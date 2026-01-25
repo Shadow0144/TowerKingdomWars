@@ -20,6 +20,10 @@ public class GameSceneController : MonoBehaviour
             if (hitObjectTileScript != null)
             {
                 hitObjectTileScript.Highlight();
+                if (Mouse.current.leftButton.wasPressedThisFrame)
+                {
+                    hitObjectTileScript.Click();
+                }
             }
         }
     }
