@@ -35,7 +35,6 @@ public class TileScript : MonoBehaviour
 
     public void Click()
     {
-        Debug.Log("Clicked");
         if (instance == null)
         {
             instance = Instantiate(towerPrefab, gameObject.transform.position, Quaternion.identity);
