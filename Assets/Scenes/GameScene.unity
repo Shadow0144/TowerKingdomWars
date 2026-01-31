@@ -148,7 +148,7 @@ MonoBehaviour:
   m_GameObject: {fileID: 757429967}
   m_Enabled: 1
   m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 78f60ef6502005a47935a2954b387d4e, type: 3}
+  m_Script: {fileID: 11500000, guid: cd6f02e4493cccf439e4c3a5edce844b, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
 --- !u!114 &757429969
@@ -400,6 +400,11 @@ GameObject:
   m_Component:
   - component: {fileID: 1940198902}
   - component: {fileID: 1940198901}
+  - component: {fileID: 1940198903}
+  - component: {fileID: 1940198904}
+  - component: {fileID: 1940198905}
+  - component: {fileID: 1940198907}
+  - component: {fileID: 1940198906}
   m_Layer: 0
   m_Name: SceneController
   m_TagString: Untagged
@@ -429,12 +434,78 @@ Transform:
   m_GameObject: {fileID: 1940198900}
   serializedVersion: 2
   m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
-  m_LocalPosition: {x: 0.24112, y: 0, z: -0.21837}
+  m_LocalPosition: {x: 0, y: 0, z: 0}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_ConstrainProportionsScale: 0
   m_Children: []
   m_Father: {fileID: 0}
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+--- !u!114 &1940198903
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1940198900}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: f312c040597fa5d40b6d13e9a30f6019, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  goblinPrefab: {fileID: 1191996214112154008, guid: 40729895681e3684fbb7feb3fde97dff, type: 3}
+--- !u!114 &1940198904
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1940198900}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: a96d5cfbd732ffe4f9329bef70143bd5, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  arrowTowerPrefab: {fileID: 5922074608034035608, guid: 25c72d7ccc197024c9553f4621fd6252, type: 3}
+--- !u!114 &1940198905
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1940198900}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: b649353a63e3f7f498c29ce37561eabf, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  arrowPrefab: {fileID: 4495301045673529462, guid: 0aa0cf303d25b1446bed706971676cee, type: 3}
+--- !u!114 &1940198906
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1940198900}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 41a4fb470787e1849be84e2f0da0778e, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  tilePrefab: {fileID: 1784448402610994304, guid: 8cece219e650aa24b9de200126c24d1d, type: 3}
+  pathTilePrefab: {fileID: 2620562319485148737, guid: cf30f0b4d9efff74bacdb16b4ed6a65f, type: 3}
+--- !u!114 &1940198907
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1940198900}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: a6c0e0acd342e6d4487011accb85468f, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  castlePrefab: {fileID: 6257740572435361374, guid: f92b0f1bb697f574daeaf39b8a9bfae6, type: 3}
 --- !u!1 &1974507139
 GameObject:
   m_ObjectHideFlags: 0

@@ -1,0 +1,12 @@
+fileFormatVersion: 2
+guid: f312c040597fa5d40b6d13e9a30f6019
+MonoImporter:
+  externalObjects: {}
+  serializedVersion: 2
+  defaultReferences:
+  - goblinPrefab: {fileID: 1191996214112154008, guid: 40729895681e3684fbb7feb3fde97dff, type: 3}
+  executionOrder: 0
+  icon: {instanceID: 0}
+  userData: 
+  assetBundleName: 
+  assetBundleVariant: 

@@ -1,7 +1,7 @@
 using UnityEngine;
 using UnityEngine.InputSystem;
 
-public class CameraScript : MonoBehaviour
+public class MainCamera : MonoBehaviour
 {
     InputAction moveAction;
     public const float CAMERA_MOVE_SPEED = 5f;

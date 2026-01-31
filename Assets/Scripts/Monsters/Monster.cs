@@ -1,16 +1,23 @@
 using System.Collections.Generic;
-using Unity.VisualScripting;
 using UnityEngine;
 
-public class MonsterScript : MonoBehaviour
+public class Monster : MonoBehaviour
 {
-    private List<GameObject> path;
+    public Player.PlayerNumber playerNumber { get; set; }
+
+    public Map map { get; set; }
+    private List<PathTile> path;
     private int targetPathIndex = 0;
     private Vector3 currentTarget;
     private const float MOVEMENT_SPEED = 0.3f;
 
+    protected int maxHealth = 10;
+    protected int health;
+
     void Start()
     {
+        health = maxHealth;
+        map.AddMonsterToMap(this);
     }
 
     void Update()
@@ -34,6 +41,8 @@ public class MonsterScript : MonoBehaviour
                     targetPathIndex++;
                     if (targetPathIndex >= path.Count)
                     {
+                        // Reached the end of the path, for now, just perish
+                        map.RemoveMonsterFromMap(this);
                         Destroy(gameObject);
                         break;
                     }
@@ -46,7 +55,7 @@ public class MonsterScript : MonoBehaviour
         }
     }
 
-    public void SetPath(List<GameObject> path)
+    public void SetPath(List<PathTile> path)
     { 
         this.path = path;
         targetPathIndex = 0;
@@ -55,6 +64,16 @@ public class MonsterScript : MonoBehaviour
         {
             targetPathIndex++;
             currentTarget = new Vector3(path[targetPathIndex].transform.position.x, transform.position.y, path[targetPathIndex].transform.position.z);
+        }
+    }
+
+    public void InflictDamage(int damage)
+    {
+        health -= damage;
+        if (health <= 0)
+        {
+            map.RemoveMonsterFromMap(this);
+            Destroy(gameObject);
         }
     }
 }

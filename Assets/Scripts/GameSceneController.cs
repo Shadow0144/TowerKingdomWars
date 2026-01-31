@@ -16,13 +16,13 @@ public class GameSceneController : MonoBehaviour
         Ray ray = MainCamera.ScreenPointToRay(Mouse.current.position.ReadValue());
         if (Physics.Raycast(ray, out RaycastHit hit))
         {
-            TileScript hitObjectTileScript = hit.collider.GetComponent<TileScript>();
-            if (hitObjectTileScript != null)
+            Tile hitObjectTile = hit.collider.GetComponent<Tile>();
+            if (hitObjectTile != null)
             {
-                hitObjectTileScript.Highlight();
+                hitObjectTile.Highlight();
                 if (Mouse.current.leftButton.wasPressedThisFrame)
                 {
-                    hitObjectTileScript.Click();
+                    hitObjectTile.Click();
                 }
             }
         }

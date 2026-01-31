@@ -1,18 +1,16 @@
 using System.Collections.Generic;
+using Unity.VisualScripting;
 using UnityEngine;
 
-public class MapScript : MonoBehaviour
+public class Map : MonoBehaviour
 {
-    public GameObject tilePrefab;
-    public GameObject pathTilePrefab;
-
-    public GameObject castlePrefab;
-
     private const int TileRows = 7;
     private const int TileCols = 7;
     private const float TileSpacing = 1.025f;
 
-    private GameObject[,] tiles;
+    private Tile[,] tiles;
+
+    public List<Monster> monsters { get; private set; } = new List<Monster>();
 
     // Note: x = row, y = col when using Vector2Int here
 
@@ -30,21 +28,21 @@ public class MapScript : MonoBehaviour
     };
 
     private LevelData level1Data = new LevelData(
-        new Vector2Int[]{ 
+        new Vector2Int[]{
             new Vector2Int(3, 0)
         },
         new Vector2Int[]{
             new Vector2Int(3, 6)
         },
-        new List<Vector2Int[]>{ 
+        new List<Vector2Int[]>{
             new Vector2Int[]{ // Path 1
                 new Vector2Int(3, 0),
-                new Vector2Int(4, 0), 
-                new Vector2Int(4, 1), 
-                new Vector2Int(4, 2), 
-                new Vector2Int(4, 3), 
-                new Vector2Int(4, 4), 
-                new Vector2Int(4, 5), 
+                new Vector2Int(4, 0),
+                new Vector2Int(4, 1),
+                new Vector2Int(4, 2),
+                new Vector2Int(4, 3),
+                new Vector2Int(4, 4),
+                new Vector2Int(4, 5),
                 new Vector2Int(4, 6),
                 new Vector2Int(3, 6)
             },
@@ -62,18 +60,18 @@ public class MapScript : MonoBehaviour
         }
     );
 
-    void Start()
+    public void Start()
     {
-        tiles = new GameObject[TileRows, TileCols];
+        tiles = new Tile[TileRows, TileCols];
         SpawnTiles(level1Data);
     }
 
-    void Update()
+    public void Update()
     {
-        
+
     }
 
-    void SpawnTiles(LevelData levelData)
+    private void SpawnTiles(LevelData levelData)
     {
         Vector3 topLeft = gameObject.transform.position;
         topLeft.x -= (TileCols - 1) * TileSpacing / 2f;
@@ -94,17 +92,14 @@ public class MapScript : MonoBehaviour
         {
             for (int j = 0; j < TileCols; j++)
             {
-                GameObject instance;
                 if (tileIsPathTile[i, j])
                 {
-                    instance = Instantiate(pathTilePrefab, tilePosition, tilePrefab.transform.rotation);
+                    tiles[i, j] = TileFactory.SpawnPathTile(this, "Tile_" + i + "_" + j, tilePosition);
                 }
                 else
                 {
-                    instance = Instantiate(tilePrefab, tilePosition, tilePrefab.transform.rotation);
+                    tiles[i, j] = TileFactory.SpawnTile(this, "Tile_" + i + "_" + j, tilePosition);
                 }
-                instance.name = tilePrefab.name + "_" + i + "_" + j;
-                tiles[j, i] = instance;
                 tilePosition.x += TileSpacing;
             }
             tilePosition.z -= TileSpacing;
@@ -114,39 +109,55 @@ public class MapScript : MonoBehaviour
         foreach (Vector2Int point in levelData.player1CastlesRowCols)
         {
             Vector3 castlePosition = new Vector3(topLeft.x + (TileSpacing * point.y), topLeft.y, topLeft.z - (TileSpacing * point.x));
-            GameObject castleInstance = Instantiate(castlePrefab, castlePosition, tilePrefab.transform.rotation);
-            CastleScript castle = castleInstance.GetComponent<CastleScript>();
+            List<List<PathTile>> paths = new List<List<PathTile>>();
             foreach (Vector2Int[] path in levelData.paths)
             {
                 if (path.Length > 0 && path[0] == point)
                 {
-                    List<GameObject> pathTiles = new List<GameObject>();
+                    List<PathTile> pathTiles = new List<PathTile>();
                     foreach (Vector2Int pathPos in path)
                     {
-                        pathTiles.Add(tiles[pathPos.y, pathPos.x]);
+                        if (tiles[pathPos.x, pathPos.y] is PathTile pathTile)
+                        {
+                            pathTiles.Add(pathTile);
+                        }
                     }
-                    castle.AddPath(pathTiles);
+                    paths.Add(pathTiles);
                 }
             }
+            StructureFactory.SpawnCastle(Player.PlayerNumber.One, castlePosition, paths, this);
         }
 
         foreach (Vector2Int point in levelData.player2CastlesRowCols)
         {
             Vector3 castlePosition = new Vector3(topLeft.x + (TileSpacing * point.y), topLeft.y, topLeft.z - (TileSpacing * point.x));
-            GameObject castleInstance = Instantiate(castlePrefab, castlePosition, tilePrefab.transform.rotation);
-            CastleScript castle = castleInstance.GetComponent<CastleScript>();
+            List<List<PathTile>> paths = new List<List<PathTile>>();
             foreach (Vector2Int[] path in levelData.paths)
             {
                 if (path.Length > 0 && path[0] == point)
                 {
-                    List<GameObject> pathTiles = new List<GameObject>();
+                    List<PathTile> pathTiles = new List<PathTile>();
                     foreach (Vector2Int pathPos in path)
                     {
-                        pathTiles.Add(tiles[pathPos.y, pathPos.x]);
+                        if (tiles[pathPos.x, pathPos.y] is PathTile pathTile)
+                        {
+                            pathTiles.Add(pathTile);
+                        }
                     }
-                    castle.AddPath(pathTiles);
+                    paths.Add(pathTiles);
                 }
             }
+            StructureFactory.SpawnCastle(Player.PlayerNumber.Two, castlePosition, paths, this);
         }
+    }
+
+    public void AddMonsterToMap(Monster monster)
+    {
+        monsters.Add(monster);
+    }
+
+    public void RemoveMonsterFromMap(Monster monster)
+    {
+        monsters.Remove(monster);
     }
 }

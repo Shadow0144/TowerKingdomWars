@@ -1,13 +1,14 @@
 using UnityEngine;
 
-public class TileScript : MonoBehaviour
+public class Tile : MonoBehaviour
 {
-    private Material material;
-    private const float HighlightDecay = 0.1f;
+    public Map map { get; set; }
+
+    protected Material material;
+    protected const float HighlightDecay = 0.1f;
     [Range(0f, 1f)] private float currentHighlight;
 
-    public GameObject towerPrefab;
-    private GameObject instance;
+    protected Tower tower;
 
     void Start()
     {
@@ -33,15 +34,16 @@ public class TileScript : MonoBehaviour
         material.SetFloat("_Blend", blend);
     }
 
-    public void Click()
+    public virtual void Click()
     {
-        if (instance == null)
+        if (tower == null)
         {
-            instance = Instantiate(towerPrefab, gameObject.transform.position, Quaternion.identity);
+            tower = TowerFactory.SpawnArrowTower(Player.PlayerNumber.One, this);
         }
         else
         {
-            Destroy(instance);
+            Destroy(tower.gameObject);
+            tower = null;
         }
     }
 }

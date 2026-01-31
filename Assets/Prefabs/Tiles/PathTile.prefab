@@ -54,9 +54,10 @@ PrefabInstance:
       objectReference: {fileID: 2100000, guid: f4919006fa12d624b89c2981f6e60485, type: 2}
     - target: {fileID: 7703099951792647027, guid: 8cece219e650aa24b9de200126c24d1d, type: 3}
       propertyPath: m_Name
-      value: PathTile Variant
+      value: PathTile
       objectReference: {fileID: 0}
-    m_RemovedComponents: []
+    m_RemovedComponents:
+    - {fileID: 1784448402610994304, guid: 8cece219e650aa24b9de200126c24d1d, type: 3}
     m_RemovedGameObjects: []
     m_AddedGameObjects: []
     m_AddedComponents:
