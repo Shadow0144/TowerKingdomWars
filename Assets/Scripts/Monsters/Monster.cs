@@ -3,9 +3,10 @@ using UnityEngine;
 
 public class Monster : MonoBehaviour
 {
-    public Player.PlayerNumber playerNumber { get; set; }
+    public Player.PlayerNumber playerNumber { get; private set; }
 
-    public Map map { get; set; }
+    public Map map { get; private set; }
+
     private List<PathTile> path;
     private int targetPathIndex = 0;
     private Vector3 currentTarget;
@@ -14,13 +15,29 @@ public class Monster : MonoBehaviour
     protected int maxHealth = 10;
     protected int health;
 
-    void Start()
+    public void Initialize(Player.PlayerNumber playerNumber, Map map, List<PathTile> path)
+    {
+        this.playerNumber = playerNumber;
+        this.map = map;
+        this.path = path;
+        
+        // Setup path
+        targetPathIndex = 0;
+        currentTarget = gameObject.transform.position;
+        if (path.Count > 1)
+        {
+            targetPathIndex++;
+            currentTarget = new Vector3(path[targetPathIndex].transform.position.x, transform.position.y, path[targetPathIndex].transform.position.z);
+        }
+    }
+
+    internal void Start()
     {
         health = maxHealth;
         map.AddMonsterToMap(this);
     }
 
-    void Update()
+    internal void Update()
     {
         if (path != null)
         {
@@ -52,18 +69,6 @@ public class Monster : MonoBehaviour
                     }
                 }
             }
-        }
-    }
-
-    public void SetPath(List<PathTile> path)
-    { 
-        this.path = path;
-        targetPathIndex = 0;
-        currentTarget = gameObject.transform.position;
-        if (path.Count > 1)
-        {
-            targetPathIndex++;
-            currentTarget = new Vector3(path[targetPathIndex].transform.position.x, transform.position.y, path[targetPathIndex].transform.position.z);
         }
     }
 

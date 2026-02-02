@@ -10,6 +10,12 @@ public class Tile : MonoBehaviour
 
     protected Tower tower;
 
+    public void Initialize(string name, Map map)
+    {
+        this.name = name;
+        this.map = map;
+    }
+
     void Start()
     {
         currentHighlight = 0.0f;

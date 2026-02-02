@@ -21,8 +21,7 @@ public class TileFactory : MonoBehaviour
 		}
 
 		Tile tile = Instantiate(Instance.tilePrefab, position, Instance.tilePrefab.transform.rotation);
-		tile.map = map;
-		tile.name = name;
+		tile.Initialize(name, map);
 		return tile;
 	}
 
@@ -34,8 +33,7 @@ public class TileFactory : MonoBehaviour
 		}
 
 		PathTile pathTile = Instantiate(Instance.pathTilePrefab, position, Instance.pathTilePrefab.transform.rotation);
-		pathTile.map = map;
-		pathTile.name = name;
-		return pathTile;
+        pathTile.Initialize(name, map);
+        return pathTile;
 	}
 }

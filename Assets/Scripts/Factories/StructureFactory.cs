@@ -22,9 +22,7 @@ public class StructureFactory : MonoBehaviour
         }
 
         Castle castle = Instantiate(Instance.castlePrefab, position, Quaternion.identity);
-        castle.playerNumber = playerNumber;
-        castle.SetPaths(paths);
-        castle.map = map;
+        castle.Initialize(map, playerNumber, paths);
         return castle;
     }
 }

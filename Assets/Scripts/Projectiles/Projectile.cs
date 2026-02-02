@@ -2,19 +2,20 @@ using UnityEngine;
 
 public class Projectile : MonoBehaviour
 {
-    public Player.PlayerNumber playerNumber { get; set; }
+    public Player.PlayerNumber playerNumber { get; private set; }
 
     public Vector3 direction { get; set; }
     public float speed { get; set; }
 
     protected float timeToLiveS { get; set; }
 
-    void Start()
+    public void Initialize(Player.PlayerNumber playerNumber, Vector3 direction)
     {
-        
+        this.playerNumber = playerNumber;
+        this.direction = direction;
     }
 
-    void Update()
+    internal void Update()
     {
         transform.position += direction * speed * Time.deltaTime;
         timeToLiveS -= Time.deltaTime;
@@ -22,10 +23,5 @@ public class Projectile : MonoBehaviour
         {
             Destroy(gameObject);
         }
-    }
-
-    void OnTriggerEnter(Collider other)
-    {
-        
     }
 }

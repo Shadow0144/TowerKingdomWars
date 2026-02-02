@@ -20,8 +20,7 @@ public class ProjectileFactory : MonoBehaviour
         }
 
         Arrow arrow = Instantiate(Instance.arrowPrefab, position, (direction.magnitude != 0) ? Quaternion.LookRotation(direction) : Quaternion.identity);
-        arrow.playerNumber = playerNumber;
-        arrow.direction = direction;
+        arrow.Initialize(playerNumber, direction);
         return arrow;
     }
 }

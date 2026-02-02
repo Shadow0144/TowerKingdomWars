@@ -2,8 +2,8 @@ using UnityEngine;
 
 public class Tower : MonoBehaviour
 {
-    public Player.PlayerNumber playerNumber { get; set; }
-    public Tile tile { get; set; }
+    public Player.PlayerNumber playerNumber { get; private set; }
+    public Tile tile { get; private set; }
 
     private GameObject firingRange;
     [SerializeField]
@@ -28,6 +28,12 @@ public class Tower : MonoBehaviour
 
     [SerializeField, Min(0.0f)] protected float fireRateS;
     protected float fireCooldownS;
+
+    public void Initialize(Player.PlayerNumber playerNumber, Tile tile)
+    {
+        this.playerNumber = playerNumber;
+        this.tile = tile;
+    }
 
     private void Awake()
     {

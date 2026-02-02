@@ -20,9 +20,7 @@ public class MonsterFactory : MonoBehaviour
         }
 
         Goblin goblin = Instantiate(Instance.goblinPrefab, startingPos, Quaternion.identity);
-        goblin.playerNumber = playerNumber;
-        goblin.map = map;
-        goblin.SetPath(path);
+        goblin.Initialize(playerNumber, map, path);
         return goblin;
     }
 }

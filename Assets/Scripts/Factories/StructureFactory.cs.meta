@@ -1,2 +1,12 @@
 fileFormatVersion: 2
 guid: a6c0e0acd342e6d4487011accb85468f
+MonoImporter:
+  externalObjects: {}
+  serializedVersion: 2
+  defaultReferences:
+  - castlePrefab: {fileID: 6257740572435361374, guid: f92b0f1bb697f574daeaf39b8a9bfae6, type: 3}
+  executionOrder: 0
+  icon: {instanceID: 0}
+  userData: 
+  assetBundleName: 
+  assetBundleVariant: 

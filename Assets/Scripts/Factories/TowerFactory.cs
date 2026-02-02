@@ -20,8 +20,7 @@ public class TowerFactory : MonoBehaviour
 		}
 
         ArrowTower arrowTower = Instantiate(Instance.arrowTowerPrefab, tile.transform.position, Quaternion.identity);
-        arrowTower.playerNumber = playerNumber;
-        arrowTower.tile = tile;
+		arrowTower.Initialize(playerNumber, tile);
 		return arrowTower;
 	}
 }

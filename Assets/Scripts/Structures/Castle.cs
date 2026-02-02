@@ -3,16 +3,21 @@ using System.Collections.Generic;
 
 public class Castle : MonoBehaviour
 {
-    public Map map;
+    public Map map { get; private set; }
 
-    public Player.PlayerNumber playerNumber;
+    public Player.PlayerNumber playerNumber { get; private set; }
 
-    public GameObject monsterPrefab;
-
-    private List<List<PathTile>> paths = new List<List<PathTile>>();
+    public List<List<PathTile>> paths { get; private set; }
 
     private const float SPAWN_RATE_S = 3.0f;
     private float spawnTimer;
+
+    public void Initialize(Map map, Player.PlayerNumber playerNumber, List<List<PathTile>> paths)
+    {
+        this.map = map;
+        this.playerNumber = playerNumber;
+        this.paths = paths;
+    }
 
     void Start()
     {
@@ -30,15 +35,5 @@ public class Castle : MonoBehaviour
             }
             spawnTimer = SPAWN_RATE_S;
         }
-    }
-
-    public void SetPaths(List<List<PathTile>> paths)
-    {
-        this.paths = paths;
-    }
-
-    public void AddPath(List<PathTile> path)
-    {
-        paths.Add(path);
     }
 }
