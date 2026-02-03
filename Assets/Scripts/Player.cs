@@ -3,20 +3,30 @@ using UnityEngine;
 
 public class Player : MonoBehaviour
 {
+    [SerializeField] private HUD hud;
+
     public enum PlayerNumber
     {
         One,
         Two,
         Three,
-        Four
+        Four,
+        Five,
+        Six,
+        Seven,
+        Eight
     };
     public PlayerNumber playerNumber { get; private set; }
 
-    void Start()
+    private enum TowerSelected
     {
-    }
+        None,
+        ArrowTower
+    };
+    private TowerSelected towerSelected;
 
-    void Update()
+    public void SelectArrowTower()
     {
+        Debug.Log("Arrow Tower Selected");
     }
 }

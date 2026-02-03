@@ -1,0 +1,14 @@
+<ui:UXML xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xmlns:ui="UnityEngine.UIElements" xmlns:uie="UnityEditor.UIElements" noNamespaceSchemaLocation="../../UIElementsSchema/UIElements.xsd" editor-extension-mode="False">
+    <Style src="project://database/Assets/UI%20Toolkit/StyleSheets/HUD.uss?fileID=7433441132597879392&amp;guid=3557a659327eeac4f8d9c7a66d9db302&amp;type=3#HUD"/>
+    <ui:VisualElement name="HUDContainer" style="flex-grow: 1;">
+        <ui:VisualElement name="TowerSelectionContainer" style="flex-grow: 1; width: 140px; background-color: rgb(145, 115, 95); border-top-left-radius: 10px; border-top-right-radius: 10px; border-bottom-right-radius: 10px; border-bottom-left-radius: 10px; padding-top: 5px; padding-right: 5px; padding-bottom: 5px; padding-left: 5px; margin-top: 10px; margin-right: 10px; margin-bottom: 10px; margin-left: 10px; height: auto; border-top-width: 1px; border-right-width: 1px; border-bottom-width: 1px; border-left-width: 1px; border-left-color: rgb(0, 0, 0); border-right-color: rgb(0, 0, 0); border-top-color: rgb(0, 0, 0); border-bottom-color: rgb(0, 0, 0);">
+            <ui:Label text="Towers" name="TowerSelectionHeaderLabel" style="width: 100px;"/>
+            <ui:ScrollView name="TowerSelectionScrollView" style="width: 120px; height: auto; align-items: flex-start;">
+            <ui:RadioButtonGroup label="" name="TowerRadioButtonGroup">
+                <ui:RadioButton label="" name="ArrowTowerButton" picking-mode="Position" class="tower-button" style="background-image: url(&quot;project://database/Assets/Textures/TowerTexture.png?fileID=2800000&amp;guid=3c93ccb1876d02a488d9821fbdd60009&amp;type=3#TowerTexture&quot;); width: 50px; height: 50px;"/>
+            </ui:RadioButtonGroup>
+            </ui:ScrollView>
+        </ui:VisualElement>
+        <ui:VisualElement name="Spacer" style="flex-grow: 1;"/>
+    </ui:VisualElement>
+</ui:UXML>
