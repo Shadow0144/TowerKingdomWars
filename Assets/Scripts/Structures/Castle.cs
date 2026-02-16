@@ -3,37 +3,34 @@ using System.Collections.Generic;
 
 public class Castle : MonoBehaviour
 {
-    public Map map { get; private set; }
+    public MapController CurrentMap { get; private set; }
 
-    public Player.PlayerNumber playerNumber { get; private set; }
+    public PlayerController.PlayerNumber CurrentPlayerNumber { get; private set; }
 
-    public List<List<PathTile>> paths { get; private set; }
+    public List<List<PathTile>> Paths { get; private set; } = new List<List<PathTile>>();
 
-    private const float SPAWN_RATE_S = 3.0f;
-    private float spawnTimer;
+    private const float _SPAWN_RATE_S = 3.0f;
+    private float _spawnTimer;
 
-    public void Initialize(Map map, Player.PlayerNumber playerNumber, List<List<PathTile>> paths)
+    public void Initialize(MapController map, PlayerController.PlayerNumber playerNumber, List<List<PathTile>> paths)
     {
-        this.map = map;
-        this.playerNumber = playerNumber;
-        this.paths = paths;
+        CurrentMap = map;
+        CurrentPlayerNumber = playerNumber;
+        Paths = paths;
+
+        _spawnTimer = _SPAWN_RATE_S;
     }
 
-    void Start()
+    private void Update()
     {
-        spawnTimer = SPAWN_RATE_S;
-    }
-
-    void Update()
-    {
-        spawnTimer -= Time.deltaTime;
-        if (spawnTimer < 0)
+        _spawnTimer -= Time.deltaTime;
+        if (_spawnTimer < 0)
         {
-            foreach (List<PathTile> path in paths)
+            foreach (List<PathTile> path in Paths)
             {
-                MonsterFactory.SpawnGoblin(transform.position, playerNumber, map, path);
+                MonsterFactory.SpawnGoblin(transform.position, CurrentPlayerNumber, CurrentMap, path);
             }
-            spawnTimer = SPAWN_RATE_S;
+            _spawnTimer = _SPAWN_RATE_S;
         }
     }
 }

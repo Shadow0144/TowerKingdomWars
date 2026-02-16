@@ -2,14 +2,12 @@ using UnityEngine;
 using UnityEngine.InputSystem;
 
 public class MainCamera : MonoBehaviour
-{
-    InputAction moveAction;
-    public const float CAMERA_MOVE_SPEED = 5f;
+{    
+    [SerializeField] private const float _CAMERA_MOVE_SPEED = 5f;
 
-    void Update()
+    private void Update()
     {
-        moveAction = InputSystem.actions.FindAction("Move");
-        Vector2 moveDirection = moveAction.ReadValue<Vector2>();
-        transform.position += (new Vector3(moveDirection.x, 0, moveDirection.y) * CAMERA_MOVE_SPEED) * Time.deltaTime;
+        Vector2 moveDirection = InputSystem.actions.FindAction("Move").ReadValue<Vector2>();
+        transform.position += (new Vector3(moveDirection.x, 0, moveDirection.y) * _CAMERA_MOVE_SPEED) * Time.deltaTime;
     }
 }

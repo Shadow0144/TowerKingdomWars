@@ -1,7 +1,7 @@
 using Unity.VisualScripting;
 using UnityEngine;
 
-public class ArrowTower : Tower
+public class FlameTower : Tower
 {
     private void Update()
     {
@@ -15,7 +15,7 @@ public class ArrowTower : Tower
                     monster.CurrentPlayerNumber != CurrentPlayerNumber &&
                     Vector3.Distance(monster.transform.position, firingPosition) <= FiringRadius)
                 {
-                    ProjectileFactory.SpawnArrow(CurrentPlayerNumber, firingPosition, (monster.transform.position - firingPosition).normalized);
+                    ProjectileFactory.SpawnFireball(CurrentPlayerNumber, firingPosition, (monster.transform.position - firingPosition).normalized);
                     fireCooldownS = fireRateS;
                     break;
                 }

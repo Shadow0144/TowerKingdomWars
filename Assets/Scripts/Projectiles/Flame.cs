@@ -1,16 +1,13 @@
 using UnityEngine;
 
-public class Arrow : Projectile
+public class Flame : Projectile
 {
-    [SerializeField] private int _damage = 5;
-
     private void OnTriggerEnter(Collider other)
     {
         Monster monster = other.gameObject.GetComponent<Monster>();
         if (monster != null)
         {
-            monster.InflictDamage(_damage);
-            Destroy(gameObject);
+            monster.InflictBuffDebuff(Monster.BuffDebuff.OnFire);
         }
     }
 }

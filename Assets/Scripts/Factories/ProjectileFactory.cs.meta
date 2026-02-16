@@ -5,6 +5,8 @@ MonoImporter:
   serializedVersion: 2
   defaultReferences:
   - arrowPrefab: {fileID: 4495301045673529462, guid: 0aa0cf303d25b1446bed706971676cee, type: 3}
+  - fireballPrefab: {fileID: -8957019313380238015, guid: d7cd5283c62b4a442b9181f8a9ee11ae, type: 3}
+  - flamePrefab: {fileID: 9039459749475769959, guid: fe5f416dc91714949b08bb5d91931ea3, type: 3}
   executionOrder: 0
   icon: {instanceID: 0}
   userData: 

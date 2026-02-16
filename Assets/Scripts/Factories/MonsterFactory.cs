@@ -3,24 +3,25 @@ using UnityEngine;
 
 public class MonsterFactory : MonoBehaviour
 {
-    [SerializeField] private Goblin goblinPrefab;
+    [SerializeField] private Goblin _goblinPrefab;
 
-    private static MonsterFactory Instance;
+    private static MonsterFactory _instance;
 
-    void Awake()
+    private void Awake()
     {
-        Instance = this;
+        _instance = this;
     }
 
-    public static Goblin SpawnGoblin(Vector3 startingPos, Player.PlayerNumber playerNumber, Map map, List<PathTile> path)
+    public static Goblin SpawnGoblin(Vector3 startingPos, PlayerController.PlayerNumber playerNumber, MapController map, List<PathTile> path)
     {
-        if (Instance == null)
+        if (_instance == null)
         {
             return null;
         }
 
-        Goblin goblin = Instantiate(Instance.goblinPrefab, startingPos, Quaternion.identity);
+        Goblin goblin = Instantiate(_instance._goblinPrefab, startingPos, Quaternion.identity);
         goblin.Initialize(playerNumber, map, path);
+        goblin.transform.SetParent(GameSceneController.Instance.Map.Monsters.transform);
         return goblin;
     }
 }

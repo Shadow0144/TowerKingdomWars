@@ -2,24 +2,26 @@ using UnityEngine;
 
 public class Projectile : MonoBehaviour
 {
-    public Player.PlayerNumber playerNumber { get; private set; }
+    public PlayerController.PlayerNumber CurrentPlayerNumber { get; private set; }
 
-    public Vector3 direction { get; set; }
-    public float speed { get; set; }
+    public Vector3 Direction { get; set; }
 
-    protected float timeToLiveS { get; set; }
+    [SerializeField] private float _speed;
+    public float Speed { get { return _speed; } set { _speed = value; } }
 
-    public void Initialize(Player.PlayerNumber playerNumber, Vector3 direction)
+    [SerializeField] protected float _timeToLiveS;
+
+    public virtual void Initialize(PlayerController.PlayerNumber playerNumber, Vector3 direction)
     {
-        this.playerNumber = playerNumber;
-        this.direction = direction;
+        CurrentPlayerNumber = playerNumber;
+        Direction = direction;
     }
 
-    internal void Update()
+    private void Update()
     {
-        transform.position += direction * speed * Time.deltaTime;
-        timeToLiveS -= Time.deltaTime;
-        if (timeToLiveS < 0.0f)
+        transform.position += Direction * Speed * Time.deltaTime;
+        _timeToLiveS -= Time.deltaTime;
+        if (_timeToLiveS < 0.0f)
         {
             Destroy(gameObject);
         }

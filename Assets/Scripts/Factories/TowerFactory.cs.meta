@@ -5,6 +5,7 @@ MonoImporter:
   serializedVersion: 2
   defaultReferences:
   - arrowTowerPrefab: {fileID: 5922074608034035608, guid: 25c72d7ccc197024c9553f4621fd6252, type: 3}
+  - flameTowerPrefab: {fileID: 1966946069316514137, guid: b245b9f53507bef47aa192e1aebc99ba, type: 3}
   executionOrder: 0
   icon: {instanceID: 0}
   userData: 

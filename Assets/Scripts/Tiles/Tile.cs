@@ -2,54 +2,75 @@ using UnityEngine;
 
 public class Tile : MonoBehaviour
 {
-    public Map map { get; set; }
+    protected Material _material;
+    protected const float _HighlightDecay = 0.1f;
+    [Range(0f, 1f)] private float _currentHighlight;
 
-    protected Material material;
-    protected const float HighlightDecay = 0.1f;
-    [Range(0f, 1f)] private float currentHighlight;
+    protected Tower _tower;
 
-    protected Tower tower;
-
-    public void Initialize(string name, Map map)
+    public void Initialize(string name)
     {
         this.name = name;
-        this.map = map;
+
+        _currentHighlight = 0.0f;
+        _material = GetComponent<Renderer>().material;
+        _material.SetFloat("_Blend", _currentHighlight);
     }
 
-    void Start()
+    private void Update()
     {
-        currentHighlight = 0.0f;
-        material = GetComponent<Renderer>().material;
-        material.SetFloat("_Blend", currentHighlight);
+        _currentHighlight = Mathf.Clamp01(_currentHighlight - _HighlightDecay);
+        SetBlend(_currentHighlight);
     }
 
-    void Update()
+    public virtual void Highlight()
     {
-        currentHighlight = Mathf.Clamp01(currentHighlight - HighlightDecay);
-        SetBlend(currentHighlight);
-    }
-
-    public void Highlight()
-    {
-        currentHighlight = 1.0f;
-        SetBlend(currentHighlight);
+        _currentHighlight = 1.0f;
+        SetBlend(_currentHighlight);
     }
 
     public void SetBlend(float blend)
     {
-        material.SetFloat("_Blend", blend);
+        _material.SetFloat("_Blend", blend);
     }
 
     public virtual void Click()
     {
-        if (tower == null)
+        if (_tower == null)
         {
-            tower = TowerFactory.SpawnArrowTower(Player.PlayerNumber.One, this);
+            switch (GameSceneController.Instance.LocalPlayer.CurrentTowerSelected)
+            {
+                case PlayerController.TowerSelected.None:
+                    {
+                        // Do nothing
+                    }
+                    break;
+                case PlayerController.TowerSelected.ArrowTower:
+                    {
+                        _tower = TowerFactory.SpawnArrowTower(GameSceneController.Instance.LocalPlayer.CurrentPlayerNumber, this);
+                    }
+                    break;
+                case PlayerController.TowerSelected.FlameTower:
+                    {
+                        _tower = TowerFactory.SpawnFlameTower(GameSceneController.Instance.LocalPlayer.CurrentPlayerNumber, this);
+                    }
+                    break;
+                case PlayerController.TowerSelected.FrostTower:
+                    {
+                        _tower = TowerFactory.SpawnFrostTower(GameSceneController.Instance.LocalPlayer.CurrentPlayerNumber, this);
+                    }
+                    break;
+            }
+            GameSceneController.Instance.DeselectTower();
         }
-        else
+        else // _tower != null
         {
-            Destroy(tower.gameObject);
-            tower = null;
+            if (GameSceneController.Instance.LocalPlayer.CurrentTowerSelected == PlayerController.TowerSelected.RemoveTower)
+            {
+                Destroy(_tower.gameObject);
+                _tower = null;
+                GameSceneController.Instance.DeselectTower();
+            }
         }
     }
 }

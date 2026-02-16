@@ -3,37 +3,39 @@ using UnityEngine;
 
 public class TileFactory : MonoBehaviour
 {
-	[SerializeField] private Tile tilePrefab;
-	[SerializeField] private PathTile pathTilePrefab;
+	[SerializeField] private Tile _tilePrefab;
+	[SerializeField] private PathTile _pathTilePrefab;
 
-	private static TileFactory Instance;
+	private static TileFactory _instance;
 
-	void Awake()
+	private void Awake()
 	{
-		Instance = this;
+		_instance = this;
 	}
 
-	public static Tile SpawnTile(Map map, string name, Vector3 position)
+	public static Tile SpawnTile(string name, Vector3 position)
 	{
-		if (Instance == null)
+		if (_instance == null)
 		{
 			return null;
 		}
 
-		Tile tile = Instantiate(Instance.tilePrefab, position, Instance.tilePrefab.transform.rotation);
-		tile.Initialize(name, map);
+		Tile tile = Instantiate(_instance._tilePrefab, position, _instance._tilePrefab.transform.rotation);
+		tile.Initialize(name);
+		tile.gameObject.transform.SetParent(GameSceneController.Instance.Map.Tiles.transform);
 		return tile;
 	}
 
-	public static Tile SpawnPathTile(Map map, string name, Vector3 position)
+	public static Tile SpawnPathTile(string name, Vector3 position)
 	{
-		if (Instance == null)
+		if (_instance == null)
 		{
 			return null;
 		}
 
-		PathTile pathTile = Instantiate(Instance.pathTilePrefab, position, Instance.pathTilePrefab.transform.rotation);
-        pathTile.Initialize(name, map);
+		PathTile pathTile = Instantiate(_instance._pathTilePrefab, position, _instance._pathTilePrefab.transform.rotation);
+        pathTile.Initialize(name);
+        pathTile.gameObject.transform.SetParent(GameSceneController.Instance.Map.Tiles.transform);
         return pathTile;
 	}
 }

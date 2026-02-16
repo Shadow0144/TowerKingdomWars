@@ -1,26 +1,29 @@
+using System;
+using Unity.Multiplayer.PlayMode;
 using UnityEngine;
 
 public class Tower : MonoBehaviour
 {
-    public Player.PlayerNumber playerNumber { get; private set; }
-    public Tile tile { get; private set; }
+    public PlayerController.PlayerNumber CurrentPlayerNumber { get; set; }
 
-    private GameObject firingRange;
-    [SerializeField]
-    private bool showFiringRange;
+    public Tile CurrentTile { get; private set; }
 
-    [SerializeField, Min(0.0f)]
-    private float firingRadius;
-    public float FiringRadius { get => firingRadius;
+    [SerializeField] protected Vector3 firingPosition;
+
+    [SerializeField] private GameObject _firingRange;
+    [SerializeField] private bool _showFiringRange;
+
+    [SerializeField, Min(0.0f)] private float _firingRadius;
+    public float FiringRadius { get => _firingRadius;
         set
         {
-            firingRadius = value;
-            if (firingRange != null)
+            _firingRadius = value;
+            if (_firingRange != null)
             {
-                firingRange.transform.localScale = new Vector3(
-                    (firingRadius * 2.0f) / transform.localScale.x,
-                    firingRange.transform.localScale.y, 
-                    (firingRadius * 2.0f) / transform.localScale.z);
+                _firingRange.transform.localScale = new Vector3(
+                    (_firingRadius * 2.0f) / transform.localScale.x,
+                    _firingRange.transform.localScale.y, 
+                    (_firingRadius * 2.0f) / transform.localScale.z);
             }
         }
 
@@ -29,28 +32,31 @@ public class Tower : MonoBehaviour
     [SerializeField, Min(0.0f)] protected float fireRateS;
     protected float fireCooldownS;
 
-    public void Initialize(Player.PlayerNumber playerNumber, Tile tile)
+    [SerializeField, Min(0.0f)] private float _firingPositionYOffset = 0.5f;
+
+    public virtual void Initialize(PlayerController.PlayerNumber playerNumber, Tile tile)
     {
-        this.playerNumber = playerNumber;
-        this.tile = tile;
+        CurrentPlayerNumber = playerNumber;
+        CurrentTile = tile;
     }
 
     private void Awake()
     {
-        if (firingRange == null)
+        if (_firingRange == null)
         {
-            firingRange = transform.Find("FiringRange")?.gameObject;
+            _firingRange = transform.Find("FiringRange")?.gameObject;
         }
+        firingPosition = transform.position + (Vector3.up * _firingPositionYOffset);
     }
-
 
     private void OnValidate()
     {
-        FiringRadius = firingRadius;
+        FiringRadius = _firingRadius;
         fireCooldownS = Mathf.Min(fireCooldownS, fireRateS);
-        if (firingRange != null)
+        if (_firingRange != null)
         {
-            firingRange.SetActive(showFiringRange);
+            _firingRange.SetActive(_showFiringRange);
         }
+        firingPosition = transform.position + (Vector3.up * _firingPositionYOffset);
     }
 }
