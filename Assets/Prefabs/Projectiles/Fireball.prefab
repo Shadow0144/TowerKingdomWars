@@ -8,13 +8,45 @@ PrefabInstance:
     serializedVersion: 3
     m_TransformParent: {fileID: 0}
     m_Modifications:
+    - target: {fileID: 137679139524005369, guid: 0aa0cf303d25b1446bed706971676cee, type: 3}
+      propertyPath: m_Mesh
+      value: 
+      objectReference: {fileID: 4711208715938537054, guid: 99640a811c3150a4fa6485d7923cb41b, type: 3}
+    - target: {fileID: 3693876823515855474, guid: 0aa0cf303d25b1446bed706971676cee, type: 3}
+      propertyPath: m_Size.x
+      value: 2
+      objectReference: {fileID: 0}
+    - target: {fileID: 3693876823515855474, guid: 0aa0cf303d25b1446bed706971676cee, type: 3}
+      propertyPath: m_Size.y
+      value: 2
+      objectReference: {fileID: 0}
+    - target: {fileID: 3693876823515855474, guid: 0aa0cf303d25b1446bed706971676cee, type: 3}
+      propertyPath: m_Size.z
+      value: 2
+      objectReference: {fileID: 0}
+    - target: {fileID: 3693876823515855474, guid: 0aa0cf303d25b1446bed706971676cee, type: 3}
+      propertyPath: m_Center.y
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 5472165600368249714, guid: 0aa0cf303d25b1446bed706971676cee, type: 3}
+      propertyPath: m_LocalScale.x
+      value: 0.05
+      objectReference: {fileID: 0}
+    - target: {fileID: 5472165600368249714, guid: 0aa0cf303d25b1446bed706971676cee, type: 3}
+      propertyPath: m_LocalScale.y
+      value: 0.05
+      objectReference: {fileID: 0}
+    - target: {fileID: 5472165600368249714, guid: 0aa0cf303d25b1446bed706971676cee, type: 3}
+      propertyPath: m_LocalScale.z
+      value: 0.05
+      objectReference: {fileID: 0}
     - target: {fileID: 5472165600368249714, guid: 0aa0cf303d25b1446bed706971676cee, type: 3}
       propertyPath: m_LocalPosition.x
       value: 0
       objectReference: {fileID: 0}
     - target: {fileID: 5472165600368249714, guid: 0aa0cf303d25b1446bed706971676cee, type: 3}
       propertyPath: m_LocalPosition.y
-      value: 0
+      value: 0.025
       objectReference: {fileID: 0}
     - target: {fileID: 5472165600368249714, guid: 0aa0cf303d25b1446bed706971676cee, type: 3}
       propertyPath: m_LocalPosition.z
@@ -82,6 +114,6 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 7b287ddc8ed4de540bd3d93ef39e1b8c, type: 3}
   m_Name: 
   m_EditorClassIdentifier: Assembly-CSharp::Fireball
-  _speed: 3
-  _timeToLiveS: 3
+  _speed: 0.5
+  _timeToLiveS: 10
   damage: 5

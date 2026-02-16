@@ -5,6 +5,7 @@ using UnityEngine;
 
 public class StructureFactory : MonoBehaviour
 {
+    [SerializeField] private Fort _fortPrefab;
     [SerializeField] private Castle _castlePrefab;
 
     private static StructureFactory _instance;
@@ -12,6 +13,19 @@ public class StructureFactory : MonoBehaviour
     private void Awake()
     {
         _instance = this;
+    }
+
+    public static Fort SpawnFort(PlayerController.PlayerNumber playerNumber, Vector3 position, List<List<PathTile>> paths, MapController map)
+    {
+        if (_instance == null)
+        {
+            return null;
+        }
+
+        Fort fort = Instantiate(_instance._fortPrefab, position, Quaternion.identity);
+        fort.Initialize(map, playerNumber, paths);
+        fort.transform.SetParent(GameSceneController.Instance.Map.Strongholds.transform);
+        return fort;
     }
 
     public static Castle SpawnCastle(PlayerController.PlayerNumber playerNumber, Vector3 position, List<List<PathTile>> paths, MapController map)
@@ -23,7 +37,7 @@ public class StructureFactory : MonoBehaviour
 
         Castle castle = Instantiate(_instance._castlePrefab, position, Quaternion.identity);
         castle.Initialize(map, playerNumber, paths);
-        castle.transform.SetParent(GameSceneController.Instance.Map.Castles.transform);
+        castle.transform.SetParent(GameSceneController.Instance.Map.Strongholds.transform);
         return castle;
     }
 }

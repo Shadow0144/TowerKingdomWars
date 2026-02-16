@@ -142,7 +142,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: Assembly-CSharp::MapController
   _tiles: {fileID: 1402387378}
-  _castles: {fileID: 1870487746}
+  _strongholds: {fileID: 1870487746}
   _towers: {fileID: 1149912625}
   _projectiles: {fileID: 2107139251}
   _monsters: {fileID: 272859452}
@@ -289,13 +289,13 @@ Transform:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 757429967}
   serializedVersion: 2
-  m_LocalRotation: {x: 0.67559016, y: 0, z: 0, w: 0.7372774}
-  m_LocalPosition: {x: 0, y: 7, z: -0.75}
+  m_LocalRotation: {x: 0.53729963, y: 0, z: 0, w: 0.8433915}
+  m_LocalPosition: {x: 0, y: 6, z: -4}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_ConstrainProportionsScale: 0
   m_Children: []
   m_Father: {fileID: 0}
-  m_LocalEulerAnglesHint: {x: 85, y: 0, z: 0}
+  m_LocalEulerAnglesHint: {x: 65, y: 0, z: 0}
 --- !u!1 &888577590
 GameObject:
   m_ObjectHideFlags: 0
@@ -673,7 +673,8 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: a6c0e0acd342e6d4487011accb85468f, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  _castlePrefab: {fileID: 6257740572435361374, guid: f92b0f1bb697f574daeaf39b8a9bfae6, type: 3}
+  _fortPrefab: {fileID: 4876754881960110812, guid: f92b0f1bb697f574daeaf39b8a9bfae6, type: 3}
+  _castlePrefab: {fileID: 4448418597562283332, guid: efffcde11cc43ec42865b19caad25257, type: 3}
 --- !u!1 &1974507139
 GameObject:
   m_ObjectHideFlags: 0
@@ -736,6 +737,10 @@ PrefabInstance:
     serializedVersion: 3
     m_TransformParent: {fileID: 0}
     m_Modifications:
+    - target: {fileID: 1168917110264919320, guid: dd3ebb83264c1924ab4dfc29e4b9e244, type: 3}
+      propertyPath: m_Name
+      value: Strongholds
+      objectReference: {fileID: 0}
     - target: {fileID: 5543435279656912410, guid: dd3ebb83264c1924ab4dfc29e4b9e244, type: 3}
       propertyPath: m_Name
       value: Map

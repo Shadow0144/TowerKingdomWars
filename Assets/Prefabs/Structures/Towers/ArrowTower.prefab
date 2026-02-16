@@ -10,11 +10,11 @@ PrefabInstance:
     m_Modifications:
     - target: {fileID: 270380322118680109, guid: f7db5d0cbf4a391479eb11751177ce3e, type: 3}
       propertyPath: m_LocalScale.x
-      value: 8
+      value: 4
       objectReference: {fileID: 0}
     - target: {fileID: 270380322118680109, guid: f7db5d0cbf4a391479eb11751177ce3e, type: 3}
       propertyPath: m_LocalScale.z
-      value: 8
+      value: 4
       objectReference: {fileID: 0}
     - target: {fileID: 270380322118680109, guid: f7db5d0cbf4a391479eb11751177ce3e, type: 3}
       propertyPath: m_LocalPosition.x
@@ -27,6 +27,22 @@ PrefabInstance:
     - target: {fileID: 1228050865283884250, guid: f7db5d0cbf4a391479eb11751177ce3e, type: 3}
       propertyPath: m_IsActive
       value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 1755793209509402184, guid: f7db5d0cbf4a391479eb11751177ce3e, type: 3}
+      propertyPath: m_Mesh
+      value: 
+      objectReference: {fileID: 2534964839176971238, guid: 999abc707cb8f544e80471070937ece7, type: 3}
+    - target: {fileID: 4475842049704657854, guid: f7db5d0cbf4a391479eb11751177ce3e, type: 3}
+      propertyPath: m_LocalScale.x
+      value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 4475842049704657854, guid: f7db5d0cbf4a391479eb11751177ce3e, type: 3}
+      propertyPath: m_LocalScale.y
+      value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 4475842049704657854, guid: f7db5d0cbf4a391479eb11751177ce3e, type: 3}
+      propertyPath: m_LocalScale.z
+      value: 1
       objectReference: {fileID: 0}
     - target: {fileID: 4475842049704657854, guid: f7db5d0cbf4a391479eb11751177ce3e, type: 3}
       propertyPath: m_LocalPosition.x
@@ -68,6 +84,10 @@ PrefabInstance:
       propertyPath: m_LocalEulerAnglesHint.z
       value: 0
       objectReference: {fileID: 0}
+    - target: {fileID: 4475842049704657854, guid: f7db5d0cbf4a391479eb11751177ce3e, type: 3}
+      propertyPath: m_ConstrainProportionsScale
+      value: 1
+      objectReference: {fileID: 0}
     - target: {fileID: 4676189917424985564, guid: f7db5d0cbf4a391479eb11751177ce3e, type: 3}
       propertyPath: m_LocalScale.x
       value: 1
@@ -75,6 +95,22 @@ PrefabInstance:
     - target: {fileID: 6544333209270561478, guid: f7db5d0cbf4a391479eb11751177ce3e, type: 3}
       propertyPath: m_Name
       value: ArrowTower
+      objectReference: {fileID: 0}
+    - target: {fileID: 6853044751695352281, guid: f7db5d0cbf4a391479eb11751177ce3e, type: 3}
+      propertyPath: m_Size.x
+      value: 0.5
+      objectReference: {fileID: 0}
+    - target: {fileID: 6853044751695352281, guid: f7db5d0cbf4a391479eb11751177ce3e, type: 3}
+      propertyPath: m_Size.y
+      value: 0.5
+      objectReference: {fileID: 0}
+    - target: {fileID: 6853044751695352281, guid: f7db5d0cbf4a391479eb11751177ce3e, type: 3}
+      propertyPath: m_Size.z
+      value: 0.5
+      objectReference: {fileID: 0}
+    - target: {fileID: 6853044751695352281, guid: f7db5d0cbf4a391479eb11751177ce3e, type: 3}
+      propertyPath: m_Center.y
+      value: 0.25
       objectReference: {fileID: 0}
     m_RemovedComponents:
     - {fileID: 7059462794870418759, guid: f7db5d0cbf4a391479eb11751177ce3e, type: 3}
@@ -112,3 +148,4 @@ MonoBehaviour:
   _showFiringRange: 0
   _firingRadius: 2
   fireRateS: 1
+  _firingPositionYOffset: 0.5

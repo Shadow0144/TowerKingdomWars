@@ -10,7 +10,7 @@ GameObject:
   m_Component:
   - component: {fileID: 8876571026719334431}
   m_Layer: 0
-  m_Name: Castles
+  m_Name: Strongholds
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -224,11 +224,11 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 6d59534e71c1c7b4fafa9892ef07be1c, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  _tiles: {fileID: 0}
-  _castles: {fileID: 1168917110264919320}
+  _tiles: {fileID: 1338958272095193713}
+  _strongholds: {fileID: 1168917110264919320}
   _towers: {fileID: 4706365633961229340}
-  _projectiles: {fileID: 0}
-  _monsters: {fileID: 0}
+  _projectiles: {fileID: 9083487683923097601}
+  _monsters: {fileID: 7700878573672347177}
 --- !u!1 &7700878573672347177
 GameObject:
   m_ObjectHideFlags: 0

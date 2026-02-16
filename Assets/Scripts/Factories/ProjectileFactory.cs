@@ -21,7 +21,7 @@ public class ProjectileFactory : MonoBehaviour
             return null;
         }
 
-        Arrow arrow = Instantiate(_instance._arrowPrefab, position, (direction.magnitude != 0) ? Quaternion.LookRotation(direction) : Quaternion.identity);
+        Arrow arrow = Instantiate(_instance._arrowPrefab, position, ((direction.magnitude != 0) ? Quaternion.LookRotation(direction) : Quaternion.identity) * Quaternion.AngleAxis(90, Vector3.right));
         arrow.Initialize(playerNumber, direction);
         arrow.transform.SetParent(GameSceneController.Instance.Map.Projectiles.transform);
         return arrow;
@@ -47,7 +47,7 @@ public class ProjectileFactory : MonoBehaviour
             return null;
         }
 
-        Flame flame = Instantiate(_instance._flamePrefab, position, (direction.magnitude != 0) ? Quaternion.LookRotation(direction) : Quaternion.identity);
+        Flame flame = Instantiate(_instance._flamePrefab, position, Quaternion.identity);
         flame.Initialize(playerNumber, direction);
         flame.transform.SetParent(GameSceneController.Instance.Map.Projectiles.transform);
         return flame;

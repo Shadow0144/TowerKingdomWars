@@ -10,15 +10,27 @@ PrefabInstance:
     m_Modifications:
     - target: {fileID: 270380322118680109, guid: f7db5d0cbf4a391479eb11751177ce3e, type: 3}
       propertyPath: m_LocalScale.x
-      value: 8
+      value: 4
       objectReference: {fileID: 0}
     - target: {fileID: 270380322118680109, guid: f7db5d0cbf4a391479eb11751177ce3e, type: 3}
       propertyPath: m_LocalScale.z
-      value: 8
+      value: 4
       objectReference: {fileID: 0}
     - target: {fileID: 1228050865283884250, guid: f7db5d0cbf4a391479eb11751177ce3e, type: 3}
       propertyPath: m_IsActive
       value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 1755793209509402184, guid: f7db5d0cbf4a391479eb11751177ce3e, type: 3}
+      propertyPath: m_Mesh
+      value: 
+      objectReference: {fileID: 2534964839176971238, guid: 5dc6ca843fabcce43a1d1ca9ae09a2ec, type: 3}
+    - target: {fileID: 4475842049704657854, guid: f7db5d0cbf4a391479eb11751177ce3e, type: 3}
+      propertyPath: m_LocalScale.x
+      value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 4475842049704657854, guid: f7db5d0cbf4a391479eb11751177ce3e, type: 3}
+      propertyPath: m_LocalScale.z
+      value: 1
       objectReference: {fileID: 0}
     - target: {fileID: 4475842049704657854, guid: f7db5d0cbf4a391479eb11751177ce3e, type: 3}
       propertyPath: m_LocalPosition.x
@@ -104,3 +116,4 @@ MonoBehaviour:
   _showFiringRange: 0
   _firingRadius: 2
   fireRateS: 10
+  _firingPositionYOffset: 0.5

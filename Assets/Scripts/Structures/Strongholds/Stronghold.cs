@@ -1,7 +1,7 @@
 using UnityEngine;
 using System.Collections.Generic;
 
-public class Castle : MonoBehaviour
+public class Stronghold : MonoBehaviour
 {
     public MapController CurrentMap { get; private set; }
 

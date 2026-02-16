@@ -15,8 +15,8 @@ public class MapController : MonoBehaviour
     [SerializeField] private GameObject _tiles;
     public GameObject Tiles => _tiles;
 
-    [SerializeField] private GameObject _castles;
-    public GameObject Castles => _castles;
+    [SerializeField] private GameObject _strongholds;
+    public GameObject Strongholds => _strongholds;
 
     [SerializeField] private GameObject _towers;
     public GameObject Towers => _towers;
