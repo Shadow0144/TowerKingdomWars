@@ -13,9 +13,7 @@ public class Monster : MonoBehaviour
         { BuffDebuff.Chilled, false }
     };
 
-    public PlayerController.PlayerNumber CurrentPlayerNumber { get; private set; }
-
-    public MapController CurrentMap { get; private set; }
+    public PlayerController.PlayerInfo OwningPlayerInfo { get; private set; }
 
     private List<PathTile> _path;
     private int _targetPathIndex = 0;
@@ -33,10 +31,9 @@ public class Monster : MonoBehaviour
     protected float _maxChillTimeS = 10.0f;
     protected float _chillSpeedModifier = 0.75f;
 
-    public virtual void Initialize(PlayerController.PlayerNumber playerNumber, MapController map, List<PathTile> path)
+    public virtual void Initialize(PlayerController.PlayerInfo playerInfo, List<PathTile> path)
     {
-        CurrentPlayerNumber = playerNumber;
-        CurrentMap = map;
+        OwningPlayerInfo = playerInfo;
         _path = path;
 
         _health = _maxHealth;
@@ -49,11 +46,6 @@ public class Monster : MonoBehaviour
             _targetPathIndex++;
             _currentTarget = new Vector3(_path[_targetPathIndex].transform.position.x, transform.position.y, _path[_targetPathIndex].transform.position.z);
         }
-    }
-
-    private void Start()
-    {
-        CurrentMap.AddMonsterToMap(this);
     }
 
     private void Update()
@@ -79,7 +71,6 @@ public class Monster : MonoBehaviour
                     if (_targetPathIndex >= _path.Count)
                     {
                         // Reached the end of the path, for now, just perish
-                        CurrentMap.RemoveMonsterFromMap(this);
                         Destroy(gameObject);
                         break;
                     }
@@ -98,6 +89,7 @@ public class Monster : MonoBehaviour
             if (_burnTimeS <= 0.0f)
             {
                 _buffsDebuffs[BuffDebuff.OnFire] = false;
+                GetComponent<Renderer>().material.color = new Color(1.0f, 1.0f, 1.0f);
             }
         }
         
@@ -107,6 +99,7 @@ public class Monster : MonoBehaviour
             if (_chillTimeS <= 0.0f)
             {
                 _buffsDebuffs[BuffDebuff.Chilled] = false;
+                GetComponent<Renderer>().material.color = new Color(1.0f, 1.0f, 1.0f);
             }
         }
     }
@@ -116,7 +109,6 @@ public class Monster : MonoBehaviour
         _health -= damage;
         if (_health <= 0.0f)
         {
-            CurrentMap.RemoveMonsterFromMap(this);
             Destroy(gameObject);
         }
     }
@@ -135,10 +127,13 @@ public class Monster : MonoBehaviour
                         _buffsDebuffs[BuffDebuff.Chilled] = false;
                         _burnTimeS = 0;
                         _chillTimeS = 0;
+                        GetComponent<Renderer>().material.color = new Color(1.0f, 1.0f, 1.0f);
                     }
                     else
                     {
                         _burnTimeS = _maxBurnTimeS;
+                        GetComponent<Renderer>().material.color = new Color(1.0f, 0.5f, 0.5f);
+
                     }
                 }
                 break;
@@ -151,10 +146,12 @@ public class Monster : MonoBehaviour
                         _buffsDebuffs[BuffDebuff.Chilled] = false;
                         _burnTimeS = 0;
                         _chillTimeS = 0;
+                        GetComponent<Renderer>().material.color = new Color(1.0f, 1.0f, 1.0f);
                     }
                     else
                     {
                         _chillTimeS = _maxChillTimeS;
+                        GetComponent<Renderer>().material.color = new Color(0.5f, 0.5f, 1.0f);
                     }
                 }
                 break;

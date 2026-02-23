@@ -12,6 +12,26 @@ PrefabInstance:
       propertyPath: m_Name
       value: Castle
       objectReference: {fileID: 0}
+    - target: {fileID: 1592606119868422689, guid: f92b0f1bb697f574daeaf39b8a9bfae6, type: 3}
+      propertyPath: m_Size.x
+      value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 1592606119868422689, guid: f92b0f1bb697f574daeaf39b8a9bfae6, type: 3}
+      propertyPath: m_Size.y
+      value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 7414167639054851735, guid: f92b0f1bb697f574daeaf39b8a9bfae6, type: 3}
+      propertyPath: m_LocalScale.x
+      value: 5
+      objectReference: {fileID: 0}
+    - target: {fileID: 7414167639054851735, guid: f92b0f1bb697f574daeaf39b8a9bfae6, type: 3}
+      propertyPath: m_LocalScale.y
+      value: 5
+      objectReference: {fileID: 0}
+    - target: {fileID: 7414167639054851735, guid: f92b0f1bb697f574daeaf39b8a9bfae6, type: 3}
+      propertyPath: m_LocalScale.z
+      value: 5
+      objectReference: {fileID: 0}
     - target: {fileID: 7414167639054851735, guid: f92b0f1bb697f574daeaf39b8a9bfae6, type: 3}
       propertyPath: m_LocalPosition.x
       value: 0
@@ -51,6 +71,10 @@ PrefabInstance:
     - target: {fileID: 7414167639054851735, guid: f92b0f1bb697f574daeaf39b8a9bfae6, type: 3}
       propertyPath: m_LocalEulerAnglesHint.z
       value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 7414167639054851735, guid: f92b0f1bb697f574daeaf39b8a9bfae6, type: 3}
+      propertyPath: m_ConstrainProportionsScale
+      value: 1
       objectReference: {fileID: 0}
     m_RemovedComponents:
     - {fileID: 4876754881960110812, guid: f92b0f1bb697f574daeaf39b8a9bfae6, type: 3}

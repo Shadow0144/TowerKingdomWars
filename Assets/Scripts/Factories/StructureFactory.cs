@@ -15,7 +15,7 @@ public class StructureFactory : MonoBehaviour
         _instance = this;
     }
 
-    public static Fort SpawnFort(PlayerController.PlayerNumber playerNumber, Vector3 position, List<List<PathTile>> paths, MapController map)
+    public static Fort SpawnFort(uint playerSlot, Vector3 position, List<Tile> tiles, List<List<PathTile>> paths)
     {
         if (_instance == null)
         {
@@ -23,12 +23,12 @@ public class StructureFactory : MonoBehaviour
         }
 
         Fort fort = Instantiate(_instance._fortPrefab, position, Quaternion.identity);
-        fort.Initialize(map, playerNumber, paths);
+        fort.Initialize(playerSlot, tiles, paths);
         fort.transform.SetParent(GameSceneController.Instance.Map.Strongholds.transform);
         return fort;
     }
 
-    public static Castle SpawnCastle(PlayerController.PlayerNumber playerNumber, Vector3 position, List<List<PathTile>> paths, MapController map)
+    public static Castle SpawnCastle(uint playerSlot, Vector3 position, List<Tile> tiles, List<List<PathTile>> paths)
     {
         if (_instance == null)
         {
@@ -36,7 +36,7 @@ public class StructureFactory : MonoBehaviour
         }
 
         Castle castle = Instantiate(_instance._castlePrefab, position, Quaternion.identity);
-        castle.Initialize(map, playerNumber, paths);
+        castle.Initialize(playerSlot, tiles, paths);
         castle.transform.SetParent(GameSceneController.Instance.Map.Strongholds.transform);
         return castle;
     }

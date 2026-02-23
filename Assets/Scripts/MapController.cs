@@ -3,14 +3,7 @@ using UnityEngine;
 
 public class MapController : MonoBehaviour
 {
-    private const int _TILE_ROWS = 7;
-    private const int _TILE_COLS = 7;
-    private const float _TILE_SPACING = 1.025f;
-
-    private Tile[,] _tileMatrix;
-
-    private List<Monster> _monsterList = new List<Monster>();
-    public List<Monster> MonsterList => _monsterList;
+    public Tile[,] TileMatrix;
 
     [SerializeField] private GameObject _tiles;
     public GameObject Tiles => _tiles;
@@ -29,20 +22,7 @@ public class MapController : MonoBehaviour
 
     // Note: x = row, y = col when using Vector2Int here
 
-    private struct LevelData
-    {
-        public LevelData(Vector2Int[] player1CastlesRowCols, Vector2Int[] player2CastlesRowCols, List<Vector2Int[]> paths)
-        {
-            Player1CastlesRowCols = player1CastlesRowCols;
-            Player2CastlesRowCols = player2CastlesRowCols;
-            Paths = paths;
-        }
-        public Vector2Int[] Player1CastlesRowCols;
-        public Vector2Int[] Player2CastlesRowCols;
-        public List<Vector2Int[]> Paths;
-    };
-
-    private LevelData level1Data = new LevelData(
+    /*private LevelData level1Data = new LevelData(
         new Vector2Int[]{
             new Vector2Int(3, 0)
         },
@@ -73,12 +53,12 @@ public class MapController : MonoBehaviour
                 new Vector2Int(3, 0)
             }
         }
-    );
+    );*/
 
     private void Start()
     {
-        _tileMatrix = new Tile[_TILE_ROWS, _TILE_COLS];
-        SpawnTiles(level1Data);
+        //_tileMatrix = new Tile[_TILE_ROWS, _TILE_COLS];
+        //SpawnTiles(level1Data);
     }
 
     private void Update()
@@ -86,7 +66,7 @@ public class MapController : MonoBehaviour
 
     }
 
-    private void SpawnTiles(LevelData levelData)
+    /*private void SpawnTiles(LevelData levelData)
     {
         Vector3 topLeft = gameObject.transform.position;
         topLeft.x -= (_TILE_COLS - 1) * _TILE_SPACING * 0.5f;
@@ -140,7 +120,7 @@ public class MapController : MonoBehaviour
                     paths.Add(pathTiles);
                 }
             }
-            StructureFactory.SpawnCastle(PlayerController.PlayerNumber.One, castlePosition, paths, this);
+            //StructureFactory.SpawnCastle(GameSceneController.Instance.PlayerInfoList[0], castlePosition, paths);
         }
 
         foreach (Vector2Int point in levelData.Player2CastlesRowCols)
@@ -162,17 +142,7 @@ public class MapController : MonoBehaviour
                     paths.Add(pathTiles);
                 }
             }
-            StructureFactory.SpawnCastle(PlayerController.PlayerNumber.Two, castlePosition, paths, this);
+            //StructureFactory.SpawnCastle(GameSceneController.Instance.PlayerInfoList[0], castlePosition, paths, this);
         }
-    }
-
-    public void AddMonsterToMap(Monster monster)
-    {
-        _monsterList.Add(monster);
-    }
-
-    public void RemoveMonsterFromMap(Monster monster)
-    {
-        _monsterList.Remove(monster);
-    }
+    }*/
 }

@@ -12,7 +12,7 @@ public class MonsterFactory : MonoBehaviour
         _instance = this;
     }
 
-    public static Goblin SpawnGoblin(Vector3 startingPos, PlayerController.PlayerNumber playerNumber, MapController map, List<PathTile> path)
+    public static Goblin SpawnGoblin(Vector3 startingPos, PlayerController.PlayerInfo playerInfo, List<PathTile> path)
     {
         if (_instance == null)
         {
@@ -20,7 +20,7 @@ public class MonsterFactory : MonoBehaviour
         }
 
         Goblin goblin = Instantiate(_instance._goblinPrefab, startingPos, Quaternion.identity);
-        goblin.Initialize(playerNumber, map, path);
+        goblin.Initialize(playerInfo, path);
         goblin.transform.SetParent(GameSceneController.Instance.Map.Monsters.transform);
         return goblin;
     }

@@ -1,21 +1,40 @@
+using System.Collections.Generic;
 using Unity.VisualScripting;
 using UnityEngine;
 
 public class FrostTower : Tower
 {
+    private static List<Vector2Int> _footprint = new List<Vector2Int>()
+    {
+        new Vector2Int(+0, +0)
+    };
+    public new static List<Vector2Int> Footprint => _footprint;
+
+    public override List<Vector2Int> GetFootprint()
+    {
+        return _footprint;
+    }
+
     private void Update()
     {
+        if (OwningPlayerInfo.playerNumber == 0 || IsGhost)
+        {
+            return;
+        }
+
         fireCooldownS -= Time.deltaTime;
         if (fireCooldownS <= 0.0f)
         {
             fireCooldownS = 0.0f; // Avoid the unlikely error of running the game for far too long and underflowing
-            foreach (Monster monster in GameSceneController.Instance.Map.MonsterList)
+            foreach (GameObject monsterGameObject in GameObject.FindGameObjectsWithTag("Monster"))
             {
-                if (!monster.IsDestroyed() &&
-                    monster.CurrentPlayerNumber != CurrentPlayerNumber &&
-                    Vector3.Distance(monster.transform.position, firingPosition) <= FiringRadius)
+                Monster monster = monsterGameObject.GetComponent<Monster>();
+                if (monster != null
+                    && !monster.IsDestroyed()
+                    && monster.OwningPlayerInfo.teamNumber != OwningPlayerInfo.teamNumber
+                    && Vector3.Distance(monster.transform.position, firingPosition) <= FiringRadius)
                 {
-                    ProjectileFactory.SpawnFrostStorm(CurrentPlayerNumber, monster.transform.position);
+                    ProjectileFactory.SpawnFrostStorm(OwningPlayerInfo, transform.position); // Spawn around the tower
                     fireCooldownS = fireRateS;
                     break;
                 }

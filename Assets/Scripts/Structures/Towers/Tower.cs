@@ -1,13 +1,10 @@
 using System;
+using System.Collections.Generic;
 using Unity.Multiplayer.PlayMode;
 using UnityEngine;
 
-public class Tower : MonoBehaviour
+public abstract class Tower : Structure
 {
-    public PlayerController.PlayerNumber CurrentPlayerNumber { get; set; }
-
-    public Tile CurrentTile { get; private set; }
-
     [SerializeField] protected Vector3 firingPosition;
 
     [SerializeField] private GameObject _firingRange;
@@ -34,10 +31,10 @@ public class Tower : MonoBehaviour
 
     [SerializeField, Min(0.0f)] private float _firingPositionYOffset = 0.5f;
 
-    public virtual void Initialize(PlayerController.PlayerNumber playerNumber, Tile tile)
+    public override void Initialize(uint playerSlot, List<Tile> tiles)
     {
-        CurrentPlayerNumber = playerNumber;
-        CurrentTile = tile;
+        CanBeDeconstructed = true;
+        base.Initialize(playerSlot, tiles);
     }
 
     private void Awake()

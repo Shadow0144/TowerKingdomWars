@@ -7,16 +7,19 @@ public class Fireball : Projectile
     private void OnTriggerEnter(Collider other)
     {
         Monster monster = other.gameObject.GetComponent<Monster>();
-        if (monster != null)
+        Tile tile = other.gameObject.GetComponent<Tile>();
+        // Collided with a monster?
+        if (monster != null
+            && monster.OwningPlayerInfo.teamNumber != OwningPlayerInfo.teamNumber)
         {
             monster.InflictDamage(damage);
-            ProjectileFactory.SpawnFlame(CurrentPlayerNumber, transform.position, Direction);
+            ProjectileFactory.SpawnFlame(OwningPlayerInfo, transform.position, Direction);
             Destroy(gameObject);
         }
-        MapController map = other.gameObject.GetComponent<MapController>();
-        if (map != null)
+        // Collided with a tile?
+        else if (tile != null)
         {
-            ProjectileFactory.SpawnFlame(CurrentPlayerNumber, transform.position, Direction);
+            ProjectileFactory.SpawnFlame(OwningPlayerInfo, transform.position, Direction);
             Destroy(gameObject);
         }
     }

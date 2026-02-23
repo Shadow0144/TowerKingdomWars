@@ -2,7 +2,7 @@ using UnityEngine;
 
 public class Projectile : MonoBehaviour
 {
-    public PlayerController.PlayerNumber CurrentPlayerNumber { get; private set; }
+    public PlayerController.PlayerInfo OwningPlayerInfo { get; private set; }
 
     public Vector3 Direction { get; set; }
 
@@ -11,9 +11,9 @@ public class Projectile : MonoBehaviour
 
     [SerializeField] protected float _timeToLiveS;
 
-    public virtual void Initialize(PlayerController.PlayerNumber playerNumber, Vector3 direction)
+    public virtual void Initialize(PlayerController.PlayerInfo playerInfo, Vector3 direction)
     {
-        CurrentPlayerNumber = playerNumber;
+        OwningPlayerInfo = playerInfo;
         Direction = direction;
     }
 

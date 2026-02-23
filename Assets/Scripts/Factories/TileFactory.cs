@@ -13,7 +13,7 @@ public class TileFactory : MonoBehaviour
 		_instance = this;
 	}
 
-	public static Tile SpawnTile(string name, Vector3 position)
+	public static Tile SpawnTile(Vector3 position, uint row, uint col)
 	{
 		if (_instance == null)
 		{
@@ -21,12 +21,12 @@ public class TileFactory : MonoBehaviour
 		}
 
 		Tile tile = Instantiate(_instance._tilePrefab, position, _instance._tilePrefab.transform.rotation);
-		tile.Initialize(name);
+		tile.Initialize(row, col);
 		tile.gameObject.transform.SetParent(GameSceneController.Instance.Map.Tiles.transform);
 		return tile;
 	}
 
-	public static Tile SpawnPathTile(string name, Vector3 position)
+	public static PathTile SpawnPathTile(Vector3 position, uint row, uint col)
 	{
 		if (_instance == null)
 		{
@@ -34,7 +34,7 @@ public class TileFactory : MonoBehaviour
 		}
 
 		PathTile pathTile = Instantiate(_instance._pathTilePrefab, position, _instance._pathTilePrefab.transform.rotation);
-        pathTile.Initialize(name);
+        pathTile.Initialize(row, col);
         pathTile.gameObject.transform.SetParent(GameSceneController.Instance.Map.Tiles.transform);
         return pathTile;
 	}

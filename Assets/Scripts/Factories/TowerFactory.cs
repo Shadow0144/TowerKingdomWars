@@ -1,5 +1,6 @@
 using System.Collections.Generic;
 using UnityEngine;
+using UnityEngine.UIElements;
 
 public class TowerFactory : MonoBehaviour
 {
@@ -14,41 +15,80 @@ public class TowerFactory : MonoBehaviour
 		_instance = this;
     }
 
-    public static ArrowTower SpawnArrowTower(PlayerController.PlayerNumber playerNumber, Tile tile)
+    public static ArrowTower getArrowTowerGhost(Vector3 position)
     {
         if (_instance == null)
         {
             return null;
         }
 
-        ArrowTower arrowTower = Instantiate(_instance._arrowTowerPrefab, tile.transform.position, Quaternion.identity);
-        arrowTower.Initialize(playerNumber, tile);
+        ArrowTower arrowTower = Instantiate(_instance._arrowTowerPrefab, position, Quaternion.identity);
+        arrowTower.IsGhost = true;
+        arrowTower.gameObject.transform.SetParent(GameSceneController.Instance.LocalPlayer.transform);
+        return arrowTower;
+    }
+
+    public static ArrowTower SpawnArrowTower(uint playerSlot, Vector3 position, List<Tile> tiles)
+    {
+        if (_instance == null)
+        {
+            return null;
+        }
+
+        ArrowTower arrowTower = Instantiate(_instance._arrowTowerPrefab, position, Quaternion.identity);
+        arrowTower.Initialize(playerSlot, tiles);
         arrowTower.gameObject.transform.SetParent(GameSceneController.Instance.Map.Towers.transform);
         return arrowTower;
     }
 
-    public static FlameTower SpawnFlameTower(PlayerController.PlayerNumber playerNumber, Tile tile)
+    public static FlameTower getFlameTowerGhost(Vector3 position)
     {
         if (_instance == null)
         {
             return null;
         }
 
-        FlameTower flameTower = Instantiate(_instance._flameTowerPrefab, tile.transform.position, Quaternion.identity);
-        flameTower.Initialize(playerNumber, tile);
+        FlameTower flameTower = Instantiate(_instance._flameTowerPrefab, position, Quaternion.identity);
+        flameTower.IsGhost = true;
+        flameTower.gameObject.transform.SetParent(GameSceneController.Instance.LocalPlayer.transform);
+        return flameTower;
+    }
+
+    public static FlameTower SpawnFlameTower(uint playerSlot, Vector3 position, List<Tile> tiles)
+    {
+        if (_instance == null)
+        {
+            return null;
+        }
+
+        FlameTower flameTower = Instantiate(_instance._flameTowerPrefab, position, Quaternion.identity);
+        flameTower.Initialize(playerSlot, tiles);
         flameTower.gameObject.transform.SetParent(GameSceneController.Instance.Map.Towers.transform);
         return flameTower;
     }
 
-    public static FrostTower SpawnFrostTower(PlayerController.PlayerNumber playerNumber, Tile tile)
+    public static FrostTower getFrostTowerGhost(Vector3 position)
     {
         if (_instance == null)
         {
             return null;
         }
 
-        FrostTower frostTower = Instantiate(_instance._frostTowerPrefab, tile.transform.position, Quaternion.identity);
-        frostTower.Initialize(playerNumber, tile);
+        FrostTower frostTower = Instantiate(_instance._frostTowerPrefab, position, Quaternion.identity);
+        frostTower.IsGhost = true;
+        frostTower.gameObject.transform.SetParent(GameSceneController.Instance.LocalPlayer.transform);
+        return frostTower;
+    }
+
+    public static FrostTower SpawnFrostTower(uint playerSlot, Vector3 position, List<Tile> tiles)
+    {
+        if (_instance == null)
+        {
+            return null;
+        }
+
+        FrostTower frostTower = Instantiate(_instance._frostTowerPrefab, position, Quaternion.identity);
+        frostTower.Initialize(playerSlot, tiles);
         frostTower.gameObject.transform.SetParent(GameSceneController.Instance.Map.Towers.transform);
         return frostTower;
     }

@@ -33,10 +33,10 @@ public class HUDController : MonoBehaviour
 
     private void OnDisable()
     {
-        _arrowTowerButton.UnregisterCallback<ClickEvent>(OnArrowTowerButtonClicked);
-        _flameTowerButton.UnregisterCallback<ClickEvent>(OnFlameTowerButtonClicked);
-        _frostTowerButton.UnregisterCallback<ClickEvent>(OnFrostTowerButtonClicked);
-        _removeTowerButton.UnregisterCallback<ClickEvent>(OnRemoveTowerButtonClicked);
+        //_arrowTowerButton.UnregisterCallback<ClickEvent>(OnArrowTowerButtonClicked);
+        //_flameTowerButton.UnregisterCallback<ClickEvent>(OnFlameTowerButtonClicked);
+        //_frostTowerButton.UnregisterCallback<ClickEvent>(OnFrostTowerButtonClicked);
+        //_removeTowerButton.UnregisterCallback<ClickEvent>(OnRemoveTowerButtonClicked);
     }
 
     private void OnArrowTowerButtonClicked(ClickEvent clickEvent)
