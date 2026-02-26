@@ -1,68 +1,71 @@
 using UnityEngine;
 
-public class ProjectileFactory : MonoBehaviour
+namespace TowerKingdomWars
 {
-    [SerializeField] private Arrow _arrowPrefab;
-    [SerializeField] private Fireball _fireballPrefab;
-    [SerializeField] private Flame _flamePrefab;
-    [SerializeField] private FrostStorm _frostStormPrefab;
-
-    private static ProjectileFactory _instance;
-
-    private void Awake()
+    public class ProjectileFactory : MonoBehaviour
     {
-        _instance = this;
-    }
+        [SerializeField] private Arrow _arrowPrefab;
+        [SerializeField] private Fireball _fireballPrefab;
+        [SerializeField] private Flame _flamePrefab;
+        [SerializeField] private FrostStorm _frostStormPrefab;
 
-    public static Arrow SpawnArrow(PlayerController.PlayerInfo playerInfo, Vector3 position, Vector3 direction)
-    {
-        if (_instance == null)
+        private static ProjectileFactory _instance;
+
+        private void Awake()
         {
-            return null;
+            _instance = this;
         }
 
-        Arrow arrow = Instantiate(_instance._arrowPrefab, position, ((direction.magnitude != 0) ? Quaternion.LookRotation(direction) : Quaternion.identity) * Quaternion.AngleAxis(90, Vector3.right));
-        arrow.Initialize(playerInfo, direction);
-        arrow.transform.SetParent(GameSceneController.Instance.Map.Projectiles.transform);
-        return arrow;
-    }
-
-    public static Fireball SpawnFireball(PlayerController.PlayerInfo playerInfo, Vector3 position, Vector3 direction)
-    {
-        if (_instance == null)
+        public static Arrow SpawnArrow(PlayerController.PlayerInfo playerInfo, Vector3 position, Vector3 direction)
         {
-            return null;
+            if (_instance == null)
+            {
+                return null;
+            }
+
+            Arrow arrow = Instantiate(_instance._arrowPrefab, position, ((direction.magnitude != 0) ? Quaternion.LookRotation(direction) : Quaternion.identity) * Quaternion.AngleAxis(90, Vector3.right));
+            arrow.Initialize(playerInfo, direction);
+            arrow.transform.SetParent(GameSceneController.Instance.Map.Projectiles.transform);
+            return arrow;
         }
 
-        Fireball fireball = Instantiate(_instance._fireballPrefab, position, (direction.magnitude != 0) ? Quaternion.LookRotation(direction) : Quaternion.identity);
-        fireball.Initialize(playerInfo, direction);
-        fireball.transform.SetParent(GameSceneController.Instance.Map.Projectiles.transform);
-        return fireball;
-    }
-
-    public static Flame SpawnFlame(PlayerController.PlayerInfo playerInfo, Vector3 position, Vector3 direction)
-    {
-        if (_instance == null)
+        public static Fireball SpawnFireball(PlayerController.PlayerInfo playerInfo, Vector3 position, Vector3 direction)
         {
-            return null;
+            if (_instance == null)
+            {
+                return null;
+            }
+
+            Fireball fireball = Instantiate(_instance._fireballPrefab, position, (direction.magnitude != 0) ? Quaternion.LookRotation(direction) : Quaternion.identity);
+            fireball.Initialize(playerInfo, direction);
+            fireball.transform.SetParent(GameSceneController.Instance.Map.Projectiles.transform);
+            return fireball;
         }
 
-        Flame flame = Instantiate(_instance._flamePrefab, position, Quaternion.identity);
-        flame.Initialize(playerInfo, direction);
-        flame.transform.SetParent(GameSceneController.Instance.Map.Projectiles.transform);
-        return flame;
-    }
-
-    public static FrostStorm SpawnFrostStorm(PlayerController.PlayerInfo playerInfo, Vector3 position)
-    {
-        if (_instance == null)
+        public static Flame SpawnFlame(PlayerController.PlayerInfo playerInfo, Vector3 position, Vector3 direction)
         {
-            return null;
+            if (_instance == null)
+            {
+                return null;
+            }
+
+            Flame flame = Instantiate(_instance._flamePrefab, position, Quaternion.identity);
+            flame.Initialize(playerInfo, direction);
+            flame.transform.SetParent(GameSceneController.Instance.Map.Projectiles.transform);
+            return flame;
         }
 
-        FrostStorm frostStorm = Instantiate(_instance._frostStormPrefab, position, Quaternion.identity);
-        frostStorm.Initialize(playerInfo, Vector3.up);
-        frostStorm.transform.SetParent(GameSceneController.Instance.Map.Projectiles.transform);
-        return frostStorm;
+        public static FrostStorm SpawnFrostStorm(PlayerController.PlayerInfo playerInfo, Vector3 position)
+        {
+            if (_instance == null)
+            {
+                return null;
+            }
+
+            FrostStorm frostStorm = Instantiate(_instance._frostStormPrefab, position, Quaternion.identity);
+            frostStorm.Initialize(playerInfo, Vector3.up);
+            frostStorm.transform.SetParent(GameSceneController.Instance.Map.Projectiles.transform);
+            return frostStorm;
+        }
     }
 }

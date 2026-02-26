@@ -1,13 +1,16 @@
 using UnityEngine;
 
-public class Flame : Projectile
+namespace TowerKingdomWars
 {
-    private void OnTriggerEnter(Collider other)
+    public class Flame : Projectile
     {
-        Monster monster = other.gameObject.GetComponent<Monster>();
-        if (monster != null)
+        private void OnTriggerEnter(Collider other)
         {
-            monster.InflictBuffDebuff(Monster.BuffDebuff.OnFire);
+            Monster monster = other.gameObject.GetComponent<Monster>();
+            if (monster != null)
+            {
+                monster.ReceiveBuffDebuff(Monster.BuffDebuff.OnFire);
+            }
         }
     }
 }

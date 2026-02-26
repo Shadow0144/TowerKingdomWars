@@ -26,7 +26,7 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 7414167639054851735, guid: f92b0f1bb697f574daeaf39b8a9bfae6, type: 3}
       propertyPath: m_LocalScale.y
-      value: 5
+      value: 0.1
       objectReference: {fileID: 0}
     - target: {fileID: 7414167639054851735, guid: f92b0f1bb697f574daeaf39b8a9bfae6, type: 3}
       propertyPath: m_LocalScale.z
@@ -74,6 +74,26 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 7414167639054851735, guid: f92b0f1bb697f574daeaf39b8a9bfae6, type: 3}
       propertyPath: m_ConstrainProportionsScale
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 7571680183817665085, guid: f92b0f1bb697f574daeaf39b8a9bfae6, type: 3}
+      propertyPath: m_LocalScale.x
+      value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 7571680183817665085, guid: f92b0f1bb697f574daeaf39b8a9bfae6, type: 3}
+      propertyPath: m_LocalScale.y
+      value: 0.5
+      objectReference: {fileID: 0}
+    - target: {fileID: 7571680183817665085, guid: f92b0f1bb697f574daeaf39b8a9bfae6, type: 3}
+      propertyPath: m_LocalScale.z
+      value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 7571680183817665085, guid: f92b0f1bb697f574daeaf39b8a9bfae6, type: 3}
+      propertyPath: m_AnchoredPosition.y
+      value: 1.25
+      objectReference: {fileID: 0}
+    - target: {fileID: 7571680183817665085, guid: f92b0f1bb697f574daeaf39b8a9bfae6, type: 3}
+      propertyPath: m_ConstrainProportionsScale
       value: 1
       objectReference: {fileID: 0}
     m_RemovedComponents:
@@ -102,3 +122,17 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 948952bcaaf1f8645beeda31052c7b2f, type: 3}
   m_Name: 
   m_EditorClassIdentifier: Assembly-CSharp::Castle
+  CanBeDeconstructed: 0
+  Alive: 1
+  _healthBar: {fileID: 8347335187974569699}
+--- !u!114 &8347335187974569699 stripped
+MonoBehaviour:
+  m_CorrespondingSourceObject: {fileID: 8260316332956276329, guid: f92b0f1bb697f574daeaf39b8a9bfae6, type: 3}
+  m_PrefabInstance: {fileID: 105052632491550858}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: d52db30e05f1b9f41b0deda5c3586991, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: Assembly-CSharp::HealthBar

@@ -1,7 +1,10 @@
 using UnityEngine;
 using UnityEngine.InputSystem;
 
-public class MainCamera : MonoBehaviour
-{    
-    
+namespace TowerKingdomWars
+{
+    public class MainCamera : MonoBehaviour
+    {
+
+    }
 }

@@ -2,42 +2,44 @@ using System.Collections.Generic;
 using UnityEngine;
 
 // Factory for all non-tower structures
-
-public class StructureFactory : MonoBehaviour
+namespace TowerKingdomWars
 {
-    [SerializeField] private Fort _fortPrefab;
-    [SerializeField] private Castle _castlePrefab;
-
-    private static StructureFactory _instance;
-
-    private void Awake()
+    public class StructureFactory : MonoBehaviour
     {
-        _instance = this;
-    }
+        [SerializeField] private Fort _fortPrefab;
+        [SerializeField] private Castle _castlePrefab;
 
-    public static Fort SpawnFort(uint playerSlot, Vector3 position, List<Tile> tiles, List<List<PathTile>> paths)
-    {
-        if (_instance == null)
+        private static StructureFactory _instance;
+
+        private void Awake()
         {
-            return null;
+            _instance = this;
         }
 
-        Fort fort = Instantiate(_instance._fortPrefab, position, Quaternion.identity);
-        fort.Initialize(playerSlot, tiles, paths);
-        fort.transform.SetParent(GameSceneController.Instance.Map.Strongholds.transform);
-        return fort;
-    }
-
-    public static Castle SpawnCastle(uint playerSlot, Vector3 position, List<Tile> tiles, List<List<PathTile>> paths)
-    {
-        if (_instance == null)
+        public static Fort SpawnFort(uint playerSlot, Vector3 position, List<Tile> tiles)
         {
-            return null;
+            if (_instance == null)
+            {
+                return null;
+            }
+
+            Fort fort = Instantiate(_instance._fortPrefab, position, Quaternion.identity);
+            fort.Initialize(playerSlot, tiles);
+            fort.transform.SetParent(GameSceneController.Instance.Map.Strongholds.transform);
+            return fort;
         }
 
-        Castle castle = Instantiate(_instance._castlePrefab, position, Quaternion.identity);
-        castle.Initialize(playerSlot, tiles, paths);
-        castle.transform.SetParent(GameSceneController.Instance.Map.Strongholds.transform);
-        return castle;
+        public static Castle SpawnCastle(uint playerSlot, Vector3 position, List<Tile> tiles)
+        {
+            if (_instance == null)
+            {
+                return null;
+            }
+
+            Castle castle = Instantiate(_instance._castlePrefab, position, Quaternion.identity);
+            castle.Initialize(playerSlot, tiles);
+            castle.transform.SetParent(GameSceneController.Instance.Map.Strongholds.transform);
+            return castle;
+        }
     }
 }

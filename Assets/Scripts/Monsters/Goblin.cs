@@ -1,5 +1,8 @@
 using UnityEngine;
 
-public class Goblin : Monster
+namespace TowerKingdomWars
 {
+    public class Goblin : Monster
+    {
+    }
 }

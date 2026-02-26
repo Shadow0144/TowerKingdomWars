@@ -1,13 +1,16 @@
 using UnityEngine;
 
-public class FrostStorm : Projectile
+namespace TowerKingdomWars
 {
-    private void OnTriggerEnter(Collider other)
+    public class FrostStorm : Projectile
     {
-        Monster monster = other.gameObject.GetComponent<Monster>();
-        if (monster != null)
+        private void OnTriggerEnter(Collider other)
         {
-            monster.InflictBuffDebuff(Monster.BuffDebuff.Chilled);
+            Monster monster = other.gameObject.GetComponent<Monster>();
+            if (monster != null)
+            {
+                monster.ReceiveBuffDebuff(Monster.BuffDebuff.Chilled);
+            }
         }
     }
 }

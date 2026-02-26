@@ -1,27 +1,30 @@
 using System.Collections.Generic;
 using UnityEngine;
 
-public class MonsterFactory : MonoBehaviour
+namespace TowerKingdomWars
 {
-    [SerializeField] private Goblin _goblinPrefab;
-
-    private static MonsterFactory _instance;
-
-    private void Awake()
+    public class MonsterFactory : MonoBehaviour
     {
-        _instance = this;
-    }
+        [SerializeField] private Goblin _goblinPrefab;
 
-    public static Goblin SpawnGoblin(Vector3 startingPos, PlayerController.PlayerInfo playerInfo, List<PathTile> path)
-    {
-        if (_instance == null)
+        private static MonsterFactory _instance;
+
+        private void Awake()
         {
-            return null;
+            _instance = this;
         }
 
-        Goblin goblin = Instantiate(_instance._goblinPrefab, startingPos, Quaternion.identity);
-        goblin.Initialize(playerInfo, path);
-        goblin.transform.SetParent(GameSceneController.Instance.Map.Monsters.transform);
-        return goblin;
+        public static Goblin SpawnGoblin(Vector3 startingPos, PlayerController.PlayerInfo playerInfo, Path path)
+        {
+            if (_instance == null)
+            {
+                return null;
+            }
+
+            Goblin goblin = Instantiate(_instance._goblinPrefab, startingPos, Quaternion.identity);
+            goblin.Initialize(playerInfo, path);
+            goblin.transform.SetParent(GameSceneController.Instance.Map.Monsters.transform);
+            return goblin;
+        }
     }
 }

@@ -1,29 +1,32 @@
 using UnityEngine;
 
-public class Projectile : MonoBehaviour
+namespace TowerKingdomWars
 {
-    public PlayerController.PlayerInfo OwningPlayerInfo { get; private set; }
-
-    public Vector3 Direction { get; set; }
-
-    [SerializeField] private float _speed;
-    public float Speed { get { return _speed; } set { _speed = value; } }
-
-    [SerializeField] protected float _timeToLiveS;
-
-    public virtual void Initialize(PlayerController.PlayerInfo playerInfo, Vector3 direction)
+    public class Projectile : MonoBehaviour
     {
-        OwningPlayerInfo = playerInfo;
-        Direction = direction;
-    }
+        public PlayerController.PlayerInfo OwningPlayerInfo { get; private set; }
 
-    private void Update()
-    {
-        transform.position += Direction * Speed * Time.deltaTime;
-        _timeToLiveS -= Time.deltaTime;
-        if (_timeToLiveS < 0.0f)
+        public Vector3 Direction { get; set; }
+
+        [SerializeField] private float _speed;
+        public float Speed { get { return _speed; } set { _speed = value; } }
+
+        [SerializeField] protected float _timeToLiveS;
+
+        public virtual void Initialize(PlayerController.PlayerInfo playerInfo, Vector3 direction)
         {
-            Destroy(gameObject);
+            OwningPlayerInfo = playerInfo;
+            Direction = direction;
+        }
+
+        private void Update()
+        {
+            transform.position += Direction * Speed * Time.deltaTime;
+            _timeToLiveS -= Time.deltaTime;
+            if (_timeToLiveS < 0.0f)
+            {
+                Destroy(gameObject);
+            }
         }
     }
 }

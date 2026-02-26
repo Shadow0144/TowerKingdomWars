@@ -1,148 +1,151 @@
 using System.Collections.Generic;
 using UnityEngine;
 
-public class MapController : MonoBehaviour
+namespace TowerKingdomWars
 {
-    public Tile[,] TileMatrix;
+    public class MapController : MonoBehaviour
+    {
+        public Tile[,] TileMatrix;
 
-    [SerializeField] private GameObject _tiles;
-    public GameObject Tiles => _tiles;
+        [SerializeField] private GameObject _tiles;
+        public GameObject Tiles => _tiles;
 
-    [SerializeField] private GameObject _strongholds;
-    public GameObject Strongholds => _strongholds;
+        [SerializeField] private GameObject _strongholds;
+        public GameObject Strongholds => _strongholds;
 
-    [SerializeField] private GameObject _towers;
-    public GameObject Towers => _towers;
+        [SerializeField] private GameObject _towers;
+        public GameObject Towers => _towers;
 
-    [SerializeField] private GameObject _projectiles;
-    public GameObject Projectiles => _projectiles;
+        [SerializeField] private GameObject _projectiles;
+        public GameObject Projectiles => _projectiles;
 
-    [SerializeField] private GameObject _monsters;
-    public GameObject Monsters => _monsters;
+        [SerializeField] private GameObject _monsters;
+        public GameObject Monsters => _monsters;
 
-    // Note: x = row, y = col when using Vector2Int here
+        // Note: x = row, y = col when using Vector2Int here
 
-    /*private LevelData level1Data = new LevelData(
-        new Vector2Int[]{
-            new Vector2Int(3, 0)
-        },
-        new Vector2Int[]{
-            new Vector2Int(3, 6)
-        },
-        new List<Vector2Int[]>{
-            new Vector2Int[]{ // Path 1
-                new Vector2Int(3, 0),
-                new Vector2Int(4, 0),
-                new Vector2Int(4, 1),
-                new Vector2Int(4, 2),
-                new Vector2Int(4, 3),
-                new Vector2Int(4, 4),
-                new Vector2Int(4, 5),
-                new Vector2Int(4, 6),
+        /*private LevelData level1Data = new LevelData(
+            new Vector2Int[]{
+                new Vector2Int(3, 0)
+            },
+            new Vector2Int[]{
                 new Vector2Int(3, 6)
             },
-            new Vector2Int[]{ // Path 2
-                new Vector2Int(3, 6),
-                new Vector2Int(2, 6),
-                new Vector2Int(2, 5),
-                new Vector2Int(2, 4),
-                new Vector2Int(2, 3),
-                new Vector2Int(2, 2),
-                new Vector2Int(2, 1),
-                new Vector2Int(2, 0),
-                new Vector2Int(3, 0)
-            }
-        }
-    );*/
-
-    private void Start()
-    {
-        //_tileMatrix = new Tile[_TILE_ROWS, _TILE_COLS];
-        //SpawnTiles(level1Data);
-    }
-
-    private void Update()
-    {
-
-    }
-
-    /*private void SpawnTiles(LevelData levelData)
-    {
-        Vector3 topLeft = gameObject.transform.position;
-        topLeft.x -= (_TILE_COLS - 1) * _TILE_SPACING * 0.5f;
-        topLeft.z += (_TILE_ROWS - 1) * _TILE_SPACING * 0.5f;
-        topLeft.y = 0.1f;
-
-        bool[,] tileIsPathTile = new bool[_TILE_ROWS, _TILE_COLS];
-        foreach (Vector2Int[] path in levelData.Paths)
-        {
-            foreach (Vector2Int point in path)
-            {
-                tileIsPathTile[point.x, point.y] = true;
-            }
-        }
-
-        Vector3 tilePosition = topLeft;
-        for (int i = 0; i < _TILE_ROWS; i++)
-        {
-            for (int j = 0; j < _TILE_COLS; j++)
-            {
-                if (tileIsPathTile[i, j])
-                {
-                    _tileMatrix[i, j] = TileFactory.SpawnPathTile("Tile_" + i + "_" + j, tilePosition);
+            new List<Vector2Int[]>{
+                new Vector2Int[]{ // Path 1
+                    new Vector2Int(3, 0),
+                    new Vector2Int(4, 0),
+                    new Vector2Int(4, 1),
+                    new Vector2Int(4, 2),
+                    new Vector2Int(4, 3),
+                    new Vector2Int(4, 4),
+                    new Vector2Int(4, 5),
+                    new Vector2Int(4, 6),
+                    new Vector2Int(3, 6)
+                },
+                new Vector2Int[]{ // Path 2
+                    new Vector2Int(3, 6),
+                    new Vector2Int(2, 6),
+                    new Vector2Int(2, 5),
+                    new Vector2Int(2, 4),
+                    new Vector2Int(2, 3),
+                    new Vector2Int(2, 2),
+                    new Vector2Int(2, 1),
+                    new Vector2Int(2, 0),
+                    new Vector2Int(3, 0)
                 }
-                else
-                {
-                    _tileMatrix[i, j] = TileFactory.SpawnTile("Tile_" + i + "_" + j, tilePosition);
-                }
-                tilePosition.x += _TILE_SPACING;
             }
-            tilePosition.z -= _TILE_SPACING;
-            tilePosition.x = topLeft.x;
+        );*/
+
+        private void Start()
+        {
+            //_tileMatrix = new Tile[_TILE_ROWS, _TILE_COLS];
+            //SpawnTiles(level1Data);
         }
 
-        foreach (Vector2Int point in levelData.Player1CastlesRowCols)
+        private void Update()
         {
-            Vector3 castlePosition = new Vector3(topLeft.x + (_TILE_SPACING * point.y), topLeft.y, topLeft.z - (_TILE_SPACING * point.x));
-            List<List<PathTile>> paths = new List<List<PathTile>>();
+
+        }
+
+        /*private void SpawnTiles(LevelData levelData)
+        {
+            Vector3 topLeft = gameObject.transform.position;
+            topLeft.x -= (_TILE_COLS - 1) * _TILE_SPACING * 0.5f;
+            topLeft.z += (_TILE_ROWS - 1) * _TILE_SPACING * 0.5f;
+            topLeft.y = 0.1f;
+
+            bool[,] tileIsPathTile = new bool[_TILE_ROWS, _TILE_COLS];
             foreach (Vector2Int[] path in levelData.Paths)
             {
-                if (path.Length > 0 && path[0] == point)
+                foreach (Vector2Int point in path)
                 {
-                    List<PathTile> pathTiles = new List<PathTile>();
-                    foreach (Vector2Int pathPos in path)
-                    {
-                        if (_tileMatrix[pathPos.x, pathPos.y] is PathTile pathTile)
-                        {
-                            pathTiles.Add(pathTile);
-                        }
-                    }
-                    paths.Add(pathTiles);
+                    tileIsPathTile[point.x, point.y] = true;
                 }
             }
-            //StructureFactory.SpawnCastle(GameSceneController.Instance.PlayerInfoList[0], castlePosition, paths);
-        }
 
-        foreach (Vector2Int point in levelData.Player2CastlesRowCols)
-        {
-            Vector3 castlePosition = new Vector3(topLeft.x + (_TILE_SPACING * point.y), topLeft.y, topLeft.z - (_TILE_SPACING * point.x));
-            List<List<PathTile>> paths = new List<List<PathTile>>();
-            foreach (Vector2Int[] path in levelData.Paths)
+            Vector3 tilePosition = topLeft;
+            for (int i = 0; i < _TILE_ROWS; i++)
             {
-                if (path.Length > 0 && path[0] == point)
+                for (int j = 0; j < _TILE_COLS; j++)
                 {
-                    List<PathTile> pathTiles = new List<PathTile>();
-                    foreach (Vector2Int pathPos in path)
+                    if (tileIsPathTile[i, j])
                     {
-                        if (_tileMatrix[pathPos.x, pathPos.y] is PathTile pathTile)
-                        {
-                            pathTiles.Add(pathTile);
-                        }
+                        _tileMatrix[i, j] = TileFactory.SpawnPathTile("Tile_" + i + "_" + j, tilePosition);
                     }
-                    paths.Add(pathTiles);
+                    else
+                    {
+                        _tileMatrix[i, j] = TileFactory.SpawnTile("Tile_" + i + "_" + j, tilePosition);
+                    }
+                    tilePosition.x += _TILE_SPACING;
                 }
+                tilePosition.z -= _TILE_SPACING;
+                tilePosition.x = topLeft.x;
             }
-            //StructureFactory.SpawnCastle(GameSceneController.Instance.PlayerInfoList[0], castlePosition, paths, this);
-        }
-    }*/
+
+            foreach (Vector2Int point in levelData.Player1CastlesRowCols)
+            {
+                Vector3 castlePosition = new Vector3(topLeft.x + (_TILE_SPACING * point.y), topLeft.y, topLeft.z - (_TILE_SPACING * point.x));
+                List<List<PathTile>> paths = new List<List<PathTile>>();
+                foreach (Vector2Int[] path in levelData.Paths)
+                {
+                    if (path.Length > 0 && path[0] == point)
+                    {
+                        List<PathTile> pathTiles = new List<PathTile>();
+                        foreach (Vector2Int pathPos in path)
+                        {
+                            if (_tileMatrix[pathPos.x, pathPos.y] is PathTile pathTile)
+                            {
+                                pathTiles.Add(pathTile);
+                            }
+                        }
+                        paths.Add(pathTiles);
+                    }
+                }
+                //StructureFactory.SpawnCastle(GameSceneController.Instance.PlayerInfoList[0], castlePosition, paths);
+            }
+
+            foreach (Vector2Int point in levelData.Player2CastlesRowCols)
+            {
+                Vector3 castlePosition = new Vector3(topLeft.x + (_TILE_SPACING * point.y), topLeft.y, topLeft.z - (_TILE_SPACING * point.x));
+                List<List<PathTile>> paths = new List<List<PathTile>>();
+                foreach (Vector2Int[] path in levelData.Paths)
+                {
+                    if (path.Length > 0 && path[0] == point)
+                    {
+                        List<PathTile> pathTiles = new List<PathTile>();
+                        foreach (Vector2Int pathPos in path)
+                        {
+                            if (_tileMatrix[pathPos.x, pathPos.y] is PathTile pathTile)
+                            {
+                                pathTiles.Add(pathTile);
+                            }
+                        }
+                        paths.Add(pathTiles);
+                    }
+                }
+                //StructureFactory.SpawnCastle(GameSceneController.Instance.PlayerInfoList[0], castlePosition, paths, this);
+            }
+        }*/
+    }
 }

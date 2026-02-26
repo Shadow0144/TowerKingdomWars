@@ -2,42 +2,66 @@ using System;
 using System.Collections.Generic;
 using UnityEngine;
 
-public abstract class Stronghold : Structure
+namespace TowerKingdomWars
 {
-    public List<List<PathTile>> Paths { get; private set; } = new List<List<PathTile>>();
-
-    private const float _SPAWN_RATE_S = 3.0f;
-    private float _spawnTimer;
-
-    public void Initialize(uint playerSlot, List<Tile> tiles, List<List<PathTile>> paths)
+    public abstract class Stronghold : Structure
     {
-        base.Initialize(playerSlot, tiles);
+        public bool Alive = true;
 
-        Paths = paths;
+        public List<Path> Paths { get; private set; } = new List<Path>();
 
-        _spawnTimer = _SPAWN_RATE_S;
-    }
+        private const float _SPAWN_RATE_S = 3.0f;
+        private float _spawnTimer;
 
-    public override void Initialize(uint playerSlot, List<Tile> tiles)
-    {
-        throw new NotSupportedException("This base Initialize function is superceded by the one with additional parameters");
-    }
+        protected float _currentHealth;
+        protected float _maxHealth = 100.0f;
+        [SerializeField] protected HealthBar _healthBar;
 
-    private void Update()
-    {
-        if (OwningPlayerInfo.playerNumber == 0 || IsGhost)
+        public override void Initialize(uint playerSlot, List<Tile> tiles)
         {
-            return;
+            base.Initialize(playerSlot, tiles);
+
+            _currentHealth = _maxHealth;
+            _healthBar.MaxHealth = _maxHealth;
+            _healthBar.CurrentHealth = _currentHealth;
+
+            _spawnTimer = _SPAWN_RATE_S;
         }
 
-        _spawnTimer -= Time.deltaTime;
-        if (_spawnTimer < 0)
+        private void Update()
         {
-            foreach (List<PathTile> path in Paths)
+            if (OwningPlayerInfo.playerNumber == 0 || IsGhost || !Alive)
             {
-                MonsterFactory.SpawnGoblin(transform.position, OwningPlayerInfo, path);
+                return;
             }
-            _spawnTimer = _SPAWN_RATE_S;
+
+            _spawnTimer -= Time.deltaTime;
+            if (_spawnTimer < 0)
+            {
+                foreach (Path path in Paths)
+                {
+                    if (path.targetStronghold.Alive)
+                    {
+                        MonsterFactory.SpawnGoblin(transform.position, OwningPlayerInfo, path);
+                    }
+                }
+                _spawnTimer = _SPAWN_RATE_S;
+            }
+        }
+
+        public void AddPath(Path path)
+        {
+            Paths.Add(path);
+        }
+
+        public void TakeDamage(float damage)
+        {
+            _currentHealth -= damage;
+            _healthBar.CurrentHealth = _currentHealth;
+            if (_currentHealth <= 0.0f)
+            {
+                Alive = false;
+            }
         }
     }
 }

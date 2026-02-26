@@ -1,17 +1,20 @@
 using UnityEngine;
 
-public class Arrow : Projectile
+namespace TowerKingdomWars
 {
-    [SerializeField] private int _damage = 5;
-
-    private void OnTriggerEnter(Collider other)
+    public class Arrow : Projectile
     {
-        Monster monster = other.gameObject.GetComponent<Monster>();
-        if (monster != null
-            && monster.OwningPlayerInfo.teamNumber != OwningPlayerInfo.teamNumber)
+        [SerializeField] private int _damage = 5;
+
+        private void OnTriggerEnter(Collider other)
         {
-            monster.InflictDamage(_damage);
-            Destroy(gameObject);
+            Monster monster = other.gameObject.GetComponent<Monster>();
+            if (monster != null
+                && monster.OwningPlayerInfo.teamNumber != OwningPlayerInfo.teamNumber)
+            {
+                monster.TakeDamage(_damage);
+                Destroy(gameObject);
+            }
         }
     }
 }
